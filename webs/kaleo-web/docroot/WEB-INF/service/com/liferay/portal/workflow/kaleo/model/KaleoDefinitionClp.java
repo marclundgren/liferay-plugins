@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -67,6 +68,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -88,6 +90,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long kaleoDefinitionId = (Long)attributes.get("kaleoDefinitionId");
 
@@ -385,11 +388,11 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		_startKaleoNodeId = startKaleoNodeId;
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoStartNode() {
+	public boolean hasIncompleteKaleoInstances() {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean hasIncompleteKaleoInstances() {
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoStartNode() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -409,6 +412,13 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		else {
 			KaleoDefinitionLocalServiceUtil.updateKaleoDefinition(this);
 		}
+	}
+
+	@SuppressWarnings("unused")
+	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
+		throws LocaleException {
+		setTitle(getTitle(defaultImportLocale), defaultImportLocale,
+			defaultImportLocale);
 	}
 
 	@Override

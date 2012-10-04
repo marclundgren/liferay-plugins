@@ -817,6 +817,12 @@ public class CalendarResourceWrapper implements CalendarResource,
 		_calendarResource.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	public void prepareLocalizedFieldsForImport(
+		java.util.Locale defaultImportLocale)
+		throws com.liferay.portal.LocaleException {
+		_calendarResource.prepareLocalizedFieldsForImport(defaultImportLocale);
+	}
+
 	@Override
 	public java.lang.Object clone() {
 		return new CalendarResourceWrapper((CalendarResource)_calendarResource.clone());
@@ -856,6 +862,14 @@ public class CalendarResourceWrapper implements CalendarResource,
 
 	public boolean isGlobal() {
 		return _calendarResource.isGlobal();
+	}
+
+	public boolean isGroup() {
+		return _calendarResource.isGroup();
+	}
+
+	public boolean isUser() {
+		return _calendarResource.isUser();
 	}
 
 	/**

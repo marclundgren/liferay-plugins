@@ -21,10 +21,15 @@ List<CalEvent> events = (List<CalEvent>)request.getAttribute("view.jsp-events");
 %>
 
 <liferay-ui:search-container
-	delta="<%= events.size() %>"
+	delta="<%= eventsPerPage %>"
 >
+
+	<%
+	int end = (events.size() < searchContainer.getEnd()) ? events.size() : searchContainer.getEnd();
+	%>
+
 	<liferay-ui:search-container-results
-		results="<%= events %>"
+		results="<%= events.subList(searchContainer.getStart(), end) %>"
 		total="<%= events.size() %>"
 	/>
 
@@ -62,11 +67,9 @@ List<CalEvent> events = (List<CalEvent>)request.getAttribute("view.jsp-events");
 				eventURL.setWindowState(LiferayWindowState.NORMAL);
 				eventURL.setPortletMode(PortletMode.VIEW);
 
-				eventURL.setParameter("struts_action", "/calendar/view");
-				eventURL.setParameter("tabs1", "day");
-				eventURL.setParameter("month", String.valueOf(cal.get(Calendar.MONTH)));
-				eventURL.setParameter("day", String.valueOf(cal.get(Calendar.DATE)));
-				eventURL.setParameter("year", String.valueOf(cal.get(Calendar.YEAR)));
+				eventURL.setParameter("struts_action", "/calendar/view_event");
+				eventURL.setParameter("redirect", PortalUtil.getCurrentURL(request));
+				eventURL.setParameter("eventId", String.valueOf(event.getEventId()));
 
 				eventHREF = eventURL.toString();
 			}
@@ -103,5 +106,5 @@ List<CalEvent> events = (List<CalEvent>)request.getAttribute("view.jsp-events");
 		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>
 
-	<liferay-ui:search-iterator />
+	<liferay-ui:search-iterator type="article" />
 </liferay-ui:search-container>

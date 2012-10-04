@@ -32,14 +32,14 @@
 			</liferay-portlet:renderURL>
 
 			<li>
-				<a class="open-sites-directory" href="javascript:;" onClick="<portlet:namespace />displayDirectoryPopup('<%= viewSitesURL %>', '<liferay-ui:message key="more-sites" unicode="<%= true %>" />');">
+				<a class="open-sites-directory" href="javascript:;" onClick="<portlet:namespace />displayDirectoryPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites-directory" unicode="<%= true %>" />');">
 					<span class="site-name">
 						<liferay-ui:icon
-							message="more-sites"
+							message="sites-directory"
 							src='<%= themeDisplay.getPathContext() + "/html/icons/more_sites.png" %>'
 						/>
 
-						<liferay-ui:message key="more-sites" />
+						<liferay-ui:message key="sites-directory" />
 					</span>
 				</a>
 			</li>

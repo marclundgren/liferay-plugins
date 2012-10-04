@@ -16,6 +16,7 @@ package com.liferay.calendar.model;
 
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 
+import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -67,6 +68,7 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -88,6 +90,7 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		String uuid = (String)attributes.get("uuid");
 
@@ -495,6 +498,15 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 		else {
 			CalendarLocalServiceUtil.updateCalendar(this);
 		}
+	}
+
+	@SuppressWarnings("unused")
+	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
+		throws LocaleException {
+		setName(getName(defaultImportLocale), defaultImportLocale,
+			defaultImportLocale);
+		setDescription(getDescription(defaultImportLocale),
+			defaultImportLocale, defaultImportLocale);
 	}
 
 	@Override

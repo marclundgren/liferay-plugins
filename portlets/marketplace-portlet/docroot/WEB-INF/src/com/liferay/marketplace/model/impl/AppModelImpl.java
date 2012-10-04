@@ -100,6 +100,10 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	 * @return the normal model instance
 	 */
 	public static App toModel(AppSoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
 		App model = new AppImpl();
 
 		model.setUuid(soapModel.getUuid());
@@ -122,6 +126,10 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	 * @return the normal model instances
 	 */
 	public static List<App> toModels(AppSoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
 		List<App> models = new ArrayList<App>(soapModels.length);
 
 		for (AppSoap soapModel : soapModels) {
@@ -376,17 +384,6 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	}
 
 	@Override
-	public App toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (App)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			App.class.getName(), getPrimaryKey());
@@ -397,6 +394,17 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public App toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (App)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

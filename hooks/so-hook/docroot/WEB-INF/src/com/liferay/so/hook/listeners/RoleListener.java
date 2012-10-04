@@ -18,6 +18,7 @@
 package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
@@ -27,8 +28,10 @@ import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.RoleConstants;
+import com.liferay.so.util.SocialOfficeConstants;
 import com.liferay.so.util.SocialOfficeUtil;
 
 import java.util.List;
@@ -53,39 +56,54 @@ public class RoleListener extends BaseModelListener<Role> {
 				return;
 			}
 
-			if (associationClassName.equals(Group.class.getName())) {
-				Group group = GroupLocalServiceUtil.getGroup(
-					(Long)associationClassPK);
+			if (!associationClassName.equals(Group.class.getName())) {
+				return;
+			}
 
-				List<User> users = null;
+			Group group = GroupLocalServiceUtil.getGroup(
+				(Long)associationClassPK);
 
-				String className = group.getClassName();
+			List<User> users = null;
 
-				if (className.equals(UserGroup.class.getName())) {
-					users = UserLocalServiceUtil.getUserGroupUsers(
-						group.getClassPK());
+			String className = group.getClassName();
+
+			if (className.equals(UserGroup.class.getName())) {
+				users = UserLocalServiceUtil.getUserGroupUsers(
+					group.getClassPK());
+			}
+			else if (className.equals(Organization.class.getName())) {
+				users = UserLocalServiceUtil.getOrganizationUsers(
+					group.getClassPK());
+			}
+			else if (className.equals(Group.class.getName())) {
+				users = UserLocalServiceUtil.getGroupUsers(group.getClassPK());
+			}
+
+			if (users == null) {
+				return;
+			}
+
+			for (User user : users) {
+				Group userGroup = user.getGroup();
+
+				ExpandoBridge expandoBridge = userGroup.getExpandoBridge();
+
+				boolean socialOfficeEnabled = GetterUtil.getBoolean(
+					expandoBridge.getAttribute("socialOfficeEnabled"));
+
+				if (socialOfficeEnabled) {
+					continue;
 				}
-				else if (className.equals(Organization.class.getName())) {
-					users = UserLocalServiceUtil.getOrganizationUsers(
-						group.getClassPK());
-				}
-				else if (className.equals(Group.class.getName())) {
-					users = UserLocalServiceUtil.getGroupUsers(
-						group.getClassPK());
-				}
 
-				if (users != null) {
-					for (User user : users) {
-						Group userGroup = user.getGroup();
+				LayoutSetPrototypeUtil.updateLayoutSetPrototype(
+					userGroup, false,
+					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC);
+				LayoutSetPrototypeUtil.updateLayoutSetPrototype(
+					userGroup, true,
+					SocialOfficeConstants.
+						LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE);
 
-						LayoutSetPrototypeUtil.updateLayoutSetPrototype(
-							userGroup, false);
-						LayoutSetPrototypeUtil.updateLayoutSetPrototype(
-							userGroup, true);
-
-						SocialOfficeUtil.enableSocialOffice(userGroup);
-					}
-				}
+				SocialOfficeUtil.enableSocialOffice(userGroup);
 			}
 		}
 		catch (Exception e) {
@@ -108,39 +126,54 @@ public class RoleListener extends BaseModelListener<Role> {
 				return;
 			}
 
-			if (associationClassName.equals(Group.class.getName())) {
-				Group group = GroupLocalServiceUtil.getGroup(
-					(Long)associationClassPK);
+			if (!associationClassName.equals(Group.class.getName())) {
+				return;
+			}
 
-				List<User> users = null;
+			Group group = GroupLocalServiceUtil.getGroup(
+				(Long)associationClassPK);
 
-				String className = group.getClassName();
+			List<User> users = null;
 
-				if (className.equals(UserGroup.class.getName())) {
-					users = UserLocalServiceUtil.getUserGroupUsers(
-						group.getClassPK());
+			String className = group.getClassName();
+
+			if (className.equals(UserGroup.class.getName())) {
+				users = UserLocalServiceUtil.getUserGroupUsers(
+					group.getClassPK());
+			}
+			else if (className.equals(Organization.class.getName())) {
+				users = UserLocalServiceUtil.getOrganizationUsers(
+					group.getClassPK());
+			}
+			else if (className.equals(Group.class.getName())) {
+				users = UserLocalServiceUtil.getGroupUsers(group.getClassPK());
+			}
+
+			if (users == null) {
+				return;
+			}
+
+			for (User user : users) {
+				Group userGroup = user.getGroup();
+
+				ExpandoBridge expandoBridge = userGroup.getExpandoBridge();
+
+				boolean socialOfficeEnabled = GetterUtil.getBoolean(
+					expandoBridge.getAttribute("socialOfficeEnabled"));
+
+				if (!socialOfficeEnabled) {
+					continue;
 				}
-				else if (className.equals(Organization.class.getName())) {
-					users = UserLocalServiceUtil.getOrganizationUsers(
-						group.getClassPK());
-				}
-				else if (className.equals(Group.class.getName())) {
-					users = UserLocalServiceUtil.getGroupUsers(
-						group.getClassPK());
-				}
 
-				if (users != null) {
-					for (User user : users) {
-						Group userGroup = user.getGroup();
+				LayoutSetPrototypeUtil.removeLayoutSetPrototype(
+					userGroup, false,
+					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC);
+				LayoutSetPrototypeUtil.removeLayoutSetPrototype(
+					userGroup, true,
+					SocialOfficeConstants.
+						LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE);
 
-						LayoutSetPrototypeUtil.removeLayoutSetPrototype(
-							userGroup, false);
-						LayoutSetPrototypeUtil.removeLayoutSetPrototype(
-							userGroup, true);
-
-						SocialOfficeUtil.disableSocialOffice(userGroup);
-					}
-				}
+				SocialOfficeUtil.disableSocialOffice(userGroup);
 			}
 		}
 		catch (Exception e) {

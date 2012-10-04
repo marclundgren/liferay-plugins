@@ -108,6 +108,10 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	 * @return the normal model instance
 	 */
 	public static MicroblogsEntry toModel(MicroblogsEntrySoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
 		MicroblogsEntry model = new MicroblogsEntryImpl();
 
 		model.setMicroblogsEntryId(soapModel.getMicroblogsEntryId());
@@ -133,6 +137,10 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	 */
 	public static List<MicroblogsEntry> toModels(
 		MicroblogsEntrySoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
 		List<MicroblogsEntry> models = new ArrayList<MicroblogsEntry>(soapModels.length);
 
 		for (MicroblogsEntrySoap soapModel : soapModels) {
@@ -456,17 +464,6 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	}
 
 	@Override
-	public MicroblogsEntry toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (MicroblogsEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			MicroblogsEntry.class.getName(), getPrimaryKey());
@@ -477,6 +474,17 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public MicroblogsEntry toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (MicroblogsEntry)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

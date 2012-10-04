@@ -52,9 +52,8 @@ import java.util.Map;
  * </p>
  *
  * <p>
- * You can see a list of services at
- * http://localhost:8080/api/secure/axis. Set the property
- * <b>axis.servlet.hosts.allowed</b> in portal.properties to configure
+ * You can see a list of services at http://localhost:8080/api/axis. Set the
+ * property <b>axis.servlet.hosts.allowed</b> in portal.properties to configure
  * security.
  * </p>
  *
@@ -218,7 +217,7 @@ public class CalendarResourceServiceSoap {
 	}
 
 	public static com.liferay.calendar.model.CalendarResourceSoap updateCalendarResource(
-		long calendarResourceId, long defaultCalendarId, java.lang.String code,
+		long calendarResourceId, long defaultCalendarId,
 		java.lang.String[] nameMapLanguageIds,
 		java.lang.String[] nameMapValues,
 		java.lang.String[] descriptionMapLanguageIds,
@@ -232,8 +231,8 @@ public class CalendarResourceServiceSoap {
 					descriptionMapValues);
 
 			com.liferay.calendar.model.CalendarResource returnValue = CalendarResourceServiceUtil.updateCalendarResource(calendarResourceId,
-					defaultCalendarId, code, nameMap, descriptionMap, type,
-					active, serviceContext);
+					defaultCalendarId, nameMap, descriptionMap, type, active,
+					serviceContext);
 
 			return com.liferay.calendar.model.CalendarResourceSoap.toSoapModel(returnValue);
 		}

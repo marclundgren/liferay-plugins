@@ -399,6 +399,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		if (isNew || !KaleoTimerInstanceTokenModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((kaleoTimerInstanceTokenModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_KALEOINSTANCEID.getColumnBitmask()) != 0) {
@@ -487,6 +488,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KITI_KTI, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KITI_KTI, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KITI_KTI,
@@ -779,10 +781,6 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	/**
 	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoInstanceId the kaleo instance ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo timer instance token
@@ -792,32 +790,48 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	public KaleoTimerInstanceToken findByKaleoInstanceId_First(
 		long kaleoInstanceId, OrderByComparator orderByComparator)
 		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKaleoInstanceId_First(kaleoInstanceId,
+				orderByComparator);
+
+		if (kaleoTimerInstanceToken != null) {
+			return kaleoTimerInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceId=");
+		msg.append(kaleoInstanceId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByKaleoInstanceId_First(
+		long kaleoInstanceId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoTimerInstanceToken> list = findByKaleoInstanceId(kaleoInstanceId,
 				0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceId=");
-			msg.append(kaleoInstanceId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTimerInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceId the kaleo instance ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -828,34 +842,50 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	public KaleoTimerInstanceToken findByKaleoInstanceId_Last(
 		long kaleoInstanceId, OrderByComparator orderByComparator)
 		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKaleoInstanceId_Last(kaleoInstanceId,
+				orderByComparator);
+
+		if (kaleoTimerInstanceToken != null) {
+			return kaleoTimerInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceId=");
+		msg.append(kaleoInstanceId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByKaleoInstanceId_Last(
+		long kaleoInstanceId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByKaleoInstanceId(kaleoInstanceId);
 
 		List<KaleoTimerInstanceToken> list = findByKaleoInstanceId(kaleoInstanceId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceId=");
-			msg.append(kaleoInstanceId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTimerInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo timer instance tokens before and after the current kaleo timer instance token in the ordered set where kaleoInstanceId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoTimerInstanceTokenId the primary key of the current kaleo timer instance token
 	 * @param kaleoInstanceId the kaleo instance ID
@@ -1306,10 +1336,6 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	/**
 	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param completed the completed
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1321,35 +1347,52 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		long kaleoInstanceTokenId, boolean completed,
 		OrderByComparator orderByComparator)
 		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_First(kaleoInstanceTokenId,
+				completed, orderByComparator);
+
+		if (kaleoTimerInstanceToken != null) {
+			return kaleoTimerInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceTokenId=");
+		msg.append(kaleoInstanceTokenId);
+
+		msg.append(", completed=");
+		msg.append(completed);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByKITI_C_First(
+		long kaleoInstanceTokenId, boolean completed,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoTimerInstanceToken> list = findByKITI_C(kaleoInstanceTokenId,
 				completed, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceTokenId=");
-			msg.append(kaleoInstanceTokenId);
-
-			msg.append(", completed=");
-			msg.append(completed);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTimerInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param completed the completed
@@ -1362,37 +1405,54 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		long kaleoInstanceTokenId, boolean completed,
 		OrderByComparator orderByComparator)
 		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_Last(kaleoInstanceTokenId,
+				completed, orderByComparator);
+
+		if (kaleoTimerInstanceToken != null) {
+			return kaleoTimerInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceTokenId=");
+		msg.append(kaleoInstanceTokenId);
+
+		msg.append(", completed=");
+		msg.append(completed);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByKITI_C_Last(
+		long kaleoInstanceTokenId, boolean completed,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKITI_C(kaleoInstanceTokenId, completed);
 
 		List<KaleoTimerInstanceToken> list = findByKITI_C(kaleoInstanceTokenId,
 				completed, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceTokenId=");
-			msg.append(kaleoInstanceTokenId);
-
-			msg.append(", completed=");
-			msg.append(completed);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTimerInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo timer instance tokens before and after the current kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoTimerInstanceTokenId the primary key of the current kaleo timer instance token
 	 * @param kaleoInstanceTokenId the kaleo instance token ID
@@ -1707,10 +1767,6 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	/**
 	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param completed the completed
 	 * @param blocking the blocking
@@ -1723,38 +1779,56 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		long kaleoInstanceTokenId, boolean completed, boolean blocking,
 		OrderByComparator orderByComparator)
 		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_B_First(kaleoInstanceTokenId,
+				completed, blocking, orderByComparator);
+
+		if (kaleoTimerInstanceToken != null) {
+			return kaleoTimerInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceTokenId=");
+		msg.append(kaleoInstanceTokenId);
+
+		msg.append(", completed=");
+		msg.append(completed);
+
+		msg.append(", blocking=");
+		msg.append(blocking);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param blocking the blocking
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByKITI_C_B_First(
+		long kaleoInstanceTokenId, boolean completed, boolean blocking,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoTimerInstanceToken> list = findByKITI_C_B(kaleoInstanceTokenId,
 				completed, blocking, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceTokenId=");
-			msg.append(kaleoInstanceTokenId);
-
-			msg.append(", completed=");
-			msg.append(completed);
-
-			msg.append(", blocking=");
-			msg.append(blocking);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTimerInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param completed the completed
@@ -1768,40 +1842,58 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		long kaleoInstanceTokenId, boolean completed, boolean blocking,
 		OrderByComparator orderByComparator)
 		throws NoSuchTimerInstanceTokenException, SystemException {
+		KaleoTimerInstanceToken kaleoTimerInstanceToken = fetchByKITI_C_B_Last(kaleoInstanceTokenId,
+				completed, blocking, orderByComparator);
+
+		if (kaleoTimerInstanceToken != null) {
+			return kaleoTimerInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceTokenId=");
+		msg.append(kaleoInstanceTokenId);
+
+		msg.append(", completed=");
+		msg.append(completed);
+
+		msg.append(", blocking=");
+		msg.append(blocking);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param completed the completed
+	 * @param blocking the blocking
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo timer instance token, or <code>null</code> if a matching kaleo timer instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken fetchByKITI_C_B_Last(
+		long kaleoInstanceTokenId, boolean completed, boolean blocking,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKITI_C_B(kaleoInstanceTokenId, completed, blocking);
 
 		List<KaleoTimerInstanceToken> list = findByKITI_C_B(kaleoInstanceTokenId,
 				completed, blocking, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceTokenId=");
-			msg.append(kaleoInstanceTokenId);
-
-			msg.append(", completed=");
-			msg.append(completed);
-
-			msg.append(", blocking=");
-			msg.append(blocking);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTimerInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo timer instance tokens before and after the current kaleo timer instance token in the ordered set where kaleoInstanceTokenId = &#63; and completed = &#63; and blocking = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoTimerInstanceTokenId the primary key of the current kaleo timer instance token
 	 * @param kaleoInstanceTokenId the kaleo instance token ID

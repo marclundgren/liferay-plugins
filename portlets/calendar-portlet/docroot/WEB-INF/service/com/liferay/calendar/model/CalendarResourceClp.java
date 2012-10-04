@@ -16,6 +16,7 @@ package com.liferay.calendar.model;
 
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 
+import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -69,6 +70,7 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -94,6 +96,7 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		String uuid = (String)attributes.get("uuid");
 
@@ -556,6 +559,14 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		_active = active;
 	}
 
+	public boolean isUser() {
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean isGroup() {
+		throw new UnsupportedOperationException();
+	}
+
 	public boolean isGlobal() {
 		throw new UnsupportedOperationException();
 	}
@@ -576,6 +587,15 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		else {
 			CalendarResourceLocalServiceUtil.updateCalendarResource(this);
 		}
+	}
+
+	@SuppressWarnings("unused")
+	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
+		throws LocaleException {
+		setName(getName(defaultImportLocale), defaultImportLocale,
+			defaultImportLocale);
+		setDescription(getDescription(defaultImportLocale),
+			defaultImportLocale, defaultImportLocale);
 	}
 
 	@Override

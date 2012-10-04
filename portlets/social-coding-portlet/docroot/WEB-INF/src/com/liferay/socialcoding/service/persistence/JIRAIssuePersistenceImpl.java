@@ -159,15 +159,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByMD_P",
-			new String[] { Date.class.getName(), Long.class.getName() },
-			JIRAIssueModelImpl.MODIFIEDDATE_COLUMN_BITMASK |
-			JIRAIssueModelImpl.PROJECTID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_MD_P = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_MD_P = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByMD_P",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByMD_P",
 			new String[] { Date.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_P_RJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
@@ -220,20 +214,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_RJUI =
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_MD_P_RJUI =
 		new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByMD_P_RJUI",
-			new String[] {
-				Date.class.getName(), Long.class.getName(),
-				String.class.getName()
-			},
-			JIRAIssueModelImpl.MODIFIEDDATE_COLUMN_BITMASK |
-			JIRAIssueModelImpl.PROJECTID_COLUMN_BITMASK |
-			JIRAIssueModelImpl.REPORTERJIRAUSERID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_MD_P_RJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByMD_P_RJUI",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByMD_P_RJUI",
 			new String[] {
 				Date.class.getName(), Long.class.getName(),
 				String.class.getName()
@@ -249,20 +233,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_AJUI =
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_MD_P_AJUI =
 		new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, JIRAIssueImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByMD_P_AJUI",
-			new String[] {
-				Date.class.getName(), Long.class.getName(),
-				String.class.getName()
-			},
-			JIRAIssueModelImpl.MODIFIEDDATE_COLUMN_BITMASK |
-			JIRAIssueModelImpl.PROJECTID_COLUMN_BITMASK |
-			JIRAIssueModelImpl.ASSIGNEEJIRAUSERID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_MD_P_AJUI = new FinderPath(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByMD_P_AJUI",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByMD_P_AJUI",
 			new String[] {
 				Date.class.getName(), Long.class.getName(),
 				String.class.getName()
@@ -546,6 +520,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		if (isNew || !JIRAIssueModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((jiraIssueModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROJECTID.getColumnBitmask()) != 0) {
@@ -607,27 +582,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			}
 
 			if ((jiraIssueModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						jiraIssueModelImpl.getOriginalModifiedDate(),
-						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MD_P, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P,
-					args);
-
-				args = new Object[] {
-						jiraIssueModelImpl.getModifiedDate(),
-						Long.valueOf(jiraIssueModelImpl.getProjectId())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MD_P, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P,
-					args);
-			}
-
-			if ((jiraIssueModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_RJUI.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
@@ -670,60 +624,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_AJUI, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_AJUI,
-					args);
-			}
-
-			if ((jiraIssueModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_RJUI.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						jiraIssueModelImpl.getOriginalModifiedDate(),
-						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
-						
-						jiraIssueModelImpl.getOriginalReporterJiraUserId()
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MD_P_RJUI,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_RJUI,
-					args);
-
-				args = new Object[] {
-						jiraIssueModelImpl.getModifiedDate(),
-						Long.valueOf(jiraIssueModelImpl.getProjectId()),
-						
-						jiraIssueModelImpl.getReporterJiraUserId()
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MD_P_RJUI,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_RJUI,
-					args);
-			}
-
-			if ((jiraIssueModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_AJUI.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						jiraIssueModelImpl.getOriginalModifiedDate(),
-						Long.valueOf(jiraIssueModelImpl.getOriginalProjectId()),
-						
-						jiraIssueModelImpl.getOriginalAssigneeJiraUserId()
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MD_P_AJUI,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_AJUI,
-					args);
-
-				args = new Object[] {
-						jiraIssueModelImpl.getModifiedDate(),
-						Long.valueOf(jiraIssueModelImpl.getProjectId()),
-						
-						jiraIssueModelImpl.getAssigneeJiraUserId()
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MD_P_AJUI,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_AJUI,
 					args);
 			}
 
@@ -795,6 +695,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				Object[] args = new Object[] { jiraIssueModelImpl.getOriginalKey() };
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KEY, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
@@ -1065,10 +966,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	/**
 	 * Returns the first j i r a issue in the ordered set where projectId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param projectId the project ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching j i r a issue
@@ -1078,32 +975,47 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByProjectId_First(long projectId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByProjectId_First(projectId,
+				orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("projectId=");
+		msg.append(projectId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a issue in the ordered set where projectId = &#63;.
+	 *
+	 * @param projectId the project ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByProjectId_First(long projectId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<JIRAIssue> list = findByProjectId(projectId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("projectId=");
-			msg.append(projectId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a issue in the ordered set where projectId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param projectId the project ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1114,34 +1026,48 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByProjectId_Last(long projectId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByProjectId_Last(projectId, orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("projectId=");
+		msg.append(projectId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a issue in the ordered set where projectId = &#63;.
+	 *
+	 * @param projectId the project ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByProjectId_Last(long projectId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByProjectId(projectId);
 
 		List<JIRAIssue> list = findByProjectId(projectId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("projectId=");
-			msg.append(projectId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraIssueId the primary key of the current j i r a issue
 	 * @param projectId the project ID
@@ -1590,10 +1516,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	/**
 	 * Returns the first j i r a issue in the ordered set where reporterJiraUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param reporterJiraUserId the reporter jira user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching j i r a issue
@@ -1603,32 +1525,48 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByReporterJiraUserId_First(String reporterJiraUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByReporterJiraUserId_First(reporterJiraUserId,
+				orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("reporterJiraUserId=");
+		msg.append(reporterJiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a issue in the ordered set where reporterJiraUserId = &#63;.
+	 *
+	 * @param reporterJiraUserId the reporter jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByReporterJiraUserId_First(
+		String reporterJiraUserId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<JIRAIssue> list = findByReporterJiraUserId(reporterJiraUserId, 0,
 				1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("reporterJiraUserId=");
-			msg.append(reporterJiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a issue in the ordered set where reporterJiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param reporterJiraUserId the reporter jira user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1639,34 +1577,49 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByReporterJiraUserId_Last(String reporterJiraUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByReporterJiraUserId_Last(reporterJiraUserId,
+				orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("reporterJiraUserId=");
+		msg.append(reporterJiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a issue in the ordered set where reporterJiraUserId = &#63;.
+	 *
+	 * @param reporterJiraUserId the reporter jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByReporterJiraUserId_Last(String reporterJiraUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByReporterJiraUserId(reporterJiraUserId);
 
 		List<JIRAIssue> list = findByReporterJiraUserId(reporterJiraUserId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("reporterJiraUserId=");
-			msg.append(reporterJiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a issues before and after the current j i r a issue in the ordered set where reporterJiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraIssueId the primary key of the current j i r a issue
 	 * @param reporterJiraUserId the reporter jira user ID
@@ -1977,10 +1930,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	/**
 	 * Returns the first j i r a issue in the ordered set where assigneeJiraUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param assigneeJiraUserId the assignee jira user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching j i r a issue
@@ -1990,32 +1939,48 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByAssigneeJiraUserId_First(String assigneeJiraUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByAssigneeJiraUserId_First(assigneeJiraUserId,
+				orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("assigneeJiraUserId=");
+		msg.append(assigneeJiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a issue in the ordered set where assigneeJiraUserId = &#63;.
+	 *
+	 * @param assigneeJiraUserId the assignee jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByAssigneeJiraUserId_First(
+		String assigneeJiraUserId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<JIRAIssue> list = findByAssigneeJiraUserId(assigneeJiraUserId, 0,
 				1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("assigneeJiraUserId=");
-			msg.append(assigneeJiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a issue in the ordered set where assigneeJiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param assigneeJiraUserId the assignee jira user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -2026,34 +1991,49 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByAssigneeJiraUserId_Last(String assigneeJiraUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByAssigneeJiraUserId_Last(assigneeJiraUserId,
+				orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("assigneeJiraUserId=");
+		msg.append(assigneeJiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a issue in the ordered set where assigneeJiraUserId = &#63;.
+	 *
+	 * @param assigneeJiraUserId the assignee jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByAssigneeJiraUserId_Last(String assigneeJiraUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByAssigneeJiraUserId(assigneeJiraUserId);
 
 		List<JIRAIssue> list = findByAssigneeJiraUserId(assigneeJiraUserId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("assigneeJiraUserId=");
-			msg.append(assigneeJiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a issues before and after the current j i r a issue in the ordered set where assigneeJiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraIssueId the primary key of the current j i r a issue
 	 * @param assigneeJiraUserId the assignee jira user ID
@@ -2264,19 +2244,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P;
-			finderArgs = new Object[] { modifiedDate, projectId };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_MD_P;
-			finderArgs = new Object[] {
-					modifiedDate, projectId,
-					
-					start, end, orderByComparator
-				};
-		}
+		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_MD_P;
+		finderArgs = new Object[] {
+				modifiedDate, projectId,
+				
+				start, end, orderByComparator
+			};
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
@@ -2366,10 +2339,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	/**
 	 * Returns the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param modifiedDate the modified date
 	 * @param projectId the project ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -2380,35 +2349,51 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByMD_P_First(Date modifiedDate, long projectId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByMD_P_First(modifiedDate, projectId,
+				orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("modifiedDate=");
+		msg.append(modifiedDate);
+
+		msg.append(", projectId=");
+		msg.append(projectId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param projectId the project ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByMD_P_First(Date modifiedDate, long projectId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<JIRAIssue> list = findByMD_P(modifiedDate, projectId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("modifiedDate=");
-			msg.append(modifiedDate);
-
-			msg.append(", projectId=");
-			msg.append(projectId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param modifiedDate the modified date
 	 * @param projectId the project ID
@@ -2420,37 +2405,53 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByMD_P_Last(Date modifiedDate, long projectId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByMD_P_Last(modifiedDate, projectId,
+				orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("modifiedDate=");
+		msg.append(modifiedDate);
+
+		msg.append(", projectId=");
+		msg.append(projectId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param projectId the project ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByMD_P_Last(Date modifiedDate, long projectId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByMD_P(modifiedDate, projectId);
 
 		List<JIRAIssue> list = findByMD_P(modifiedDate, projectId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("modifiedDate=");
-			msg.append(modifiedDate);
-
-			msg.append(", projectId=");
-			msg.append(projectId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a issues before and after the current j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraIssueId the primary key of the current j i r a issue
 	 * @param modifiedDate the modified date
@@ -2770,10 +2771,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	/**
 	 * Returns the first j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param projectId the project ID
 	 * @param reporterJiraUserId the reporter jira user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -2784,35 +2781,52 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByP_RJUI_First(long projectId,
 		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByP_RJUI_First(projectId,
+				reporterJiraUserId, orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("projectId=");
+		msg.append(projectId);
+
+		msg.append(", reporterJiraUserId=");
+		msg.append(reporterJiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * @param projectId the project ID
+	 * @param reporterJiraUserId the reporter jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByP_RJUI_First(long projectId,
+		String reporterJiraUserId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<JIRAIssue> list = findByP_RJUI(projectId, reporterJiraUserId, 0,
 				1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("projectId=");
-			msg.append(projectId);
-
-			msg.append(", reporterJiraUserId=");
-			msg.append(reporterJiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param projectId the project ID
 	 * @param reporterJiraUserId the reporter jira user ID
@@ -2824,37 +2838,54 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByP_RJUI_Last(long projectId,
 		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByP_RJUI_Last(projectId, reporterJiraUserId,
+				orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("projectId=");
+		msg.append(projectId);
+
+		msg.append(", reporterJiraUserId=");
+		msg.append(reporterJiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * @param projectId the project ID
+	 * @param reporterJiraUserId the reporter jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByP_RJUI_Last(long projectId,
+		String reporterJiraUserId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByP_RJUI(projectId, reporterJiraUserId);
 
 		List<JIRAIssue> list = findByP_RJUI(projectId, reporterJiraUserId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("projectId=");
-			msg.append(projectId);
-
-			msg.append(", reporterJiraUserId=");
-			msg.append(reporterJiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraIssueId the primary key of the current j i r a issue
 	 * @param projectId the project ID
@@ -3180,10 +3211,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	/**
 	 * Returns the first j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param projectId the project ID
 	 * @param assigneeJiraUserId the assignee jira user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -3194,35 +3221,52 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByP_AJUI_First(long projectId,
 		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByP_AJUI_First(projectId,
+				assigneeJiraUserId, orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("projectId=");
+		msg.append(projectId);
+
+		msg.append(", assigneeJiraUserId=");
+		msg.append(assigneeJiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * @param projectId the project ID
+	 * @param assigneeJiraUserId the assignee jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByP_AJUI_First(long projectId,
+		String assigneeJiraUserId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<JIRAIssue> list = findByP_AJUI(projectId, assigneeJiraUserId, 0,
 				1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("projectId=");
-			msg.append(projectId);
-
-			msg.append(", assigneeJiraUserId=");
-			msg.append(assigneeJiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param projectId the project ID
 	 * @param assigneeJiraUserId the assignee jira user ID
@@ -3234,37 +3278,54 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByP_AJUI_Last(long projectId,
 		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByP_AJUI_Last(projectId, assigneeJiraUserId,
+				orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("projectId=");
+		msg.append(projectId);
+
+		msg.append(", assigneeJiraUserId=");
+		msg.append(assigneeJiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * @param projectId the project ID
+	 * @param assigneeJiraUserId the assignee jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByP_AJUI_Last(long projectId,
+		String assigneeJiraUserId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByP_AJUI(projectId, assigneeJiraUserId);
 
 		List<JIRAIssue> list = findByP_AJUI(projectId, assigneeJiraUserId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("projectId=");
-			msg.append(projectId);
-
-			msg.append(", assigneeJiraUserId=");
-			msg.append(assigneeJiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraIssueId the primary key of the current j i r a issue
 	 * @param projectId the project ID
@@ -3486,21 +3547,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_RJUI;
-			finderArgs = new Object[] {
-					modifiedDate, projectId, reporterJiraUserId
-				};
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_MD_P_RJUI;
-			finderArgs = new Object[] {
-					modifiedDate, projectId, reporterJiraUserId,
-					
-					start, end, orderByComparator
-				};
-		}
+		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_MD_P_RJUI;
+		finderArgs = new Object[] {
+				modifiedDate, projectId, reporterJiraUserId,
+				
+				start, end, orderByComparator
+			};
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
@@ -3608,10 +3660,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	/**
 	 * Returns the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param modifiedDate the modified date
 	 * @param projectId the project ID
 	 * @param reporterJiraUserId the reporter jira user ID
@@ -3623,38 +3671,56 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByMD_P_RJUI_First(Date modifiedDate, long projectId,
 		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByMD_P_RJUI_First(modifiedDate, projectId,
+				reporterJiraUserId, orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("modifiedDate=");
+		msg.append(modifiedDate);
+
+		msg.append(", projectId=");
+		msg.append(projectId);
+
+		msg.append(", reporterJiraUserId=");
+		msg.append(reporterJiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param projectId the project ID
+	 * @param reporterJiraUserId the reporter jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByMD_P_RJUI_First(Date modifiedDate, long projectId,
+		String reporterJiraUserId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<JIRAIssue> list = findByMD_P_RJUI(modifiedDate, projectId,
 				reporterJiraUserId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("modifiedDate=");
-			msg.append(modifiedDate);
-
-			msg.append(", projectId=");
-			msg.append(projectId);
-
-			msg.append(", reporterJiraUserId=");
-			msg.append(reporterJiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param modifiedDate the modified date
 	 * @param projectId the project ID
@@ -3667,40 +3733,58 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByMD_P_RJUI_Last(Date modifiedDate, long projectId,
 		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByMD_P_RJUI_Last(modifiedDate, projectId,
+				reporterJiraUserId, orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("modifiedDate=");
+		msg.append(modifiedDate);
+
+		msg.append(", projectId=");
+		msg.append(projectId);
+
+		msg.append(", reporterJiraUserId=");
+		msg.append(reporterJiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param projectId the project ID
+	 * @param reporterJiraUserId the reporter jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByMD_P_RJUI_Last(Date modifiedDate, long projectId,
+		String reporterJiraUserId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByMD_P_RJUI(modifiedDate, projectId, reporterJiraUserId);
 
 		List<JIRAIssue> list = findByMD_P_RJUI(modifiedDate, projectId,
 				reporterJiraUserId, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("modifiedDate=");
-			msg.append(modifiedDate);
-
-			msg.append(", projectId=");
-			msg.append(projectId);
-
-			msg.append(", reporterJiraUserId=");
-			msg.append(reporterJiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a issues before and after the current j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraIssueId the primary key of the current j i r a issue
 	 * @param modifiedDate the modified date
@@ -3937,21 +4021,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MD_P_AJUI;
-			finderArgs = new Object[] {
-					modifiedDate, projectId, assigneeJiraUserId
-				};
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_MD_P_AJUI;
-			finderArgs = new Object[] {
-					modifiedDate, projectId, assigneeJiraUserId,
-					
-					start, end, orderByComparator
-				};
-		}
+		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_MD_P_AJUI;
+		finderArgs = new Object[] {
+				modifiedDate, projectId, assigneeJiraUserId,
+				
+				start, end, orderByComparator
+			};
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
@@ -4059,10 +4134,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	/**
 	 * Returns the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param modifiedDate the modified date
 	 * @param projectId the project ID
 	 * @param assigneeJiraUserId the assignee jira user ID
@@ -4074,38 +4145,56 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByMD_P_AJUI_First(Date modifiedDate, long projectId,
 		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByMD_P_AJUI_First(modifiedDate, projectId,
+				assigneeJiraUserId, orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("modifiedDate=");
+		msg.append(modifiedDate);
+
+		msg.append(", projectId=");
+		msg.append(projectId);
+
+		msg.append(", assigneeJiraUserId=");
+		msg.append(assigneeJiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param projectId the project ID
+	 * @param assigneeJiraUserId the assignee jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByMD_P_AJUI_First(Date modifiedDate, long projectId,
+		String assigneeJiraUserId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<JIRAIssue> list = findByMD_P_AJUI(modifiedDate, projectId,
 				assigneeJiraUserId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("modifiedDate=");
-			msg.append(modifiedDate);
-
-			msg.append(", projectId=");
-			msg.append(projectId);
-
-			msg.append(", assigneeJiraUserId=");
-			msg.append(assigneeJiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param modifiedDate the modified date
 	 * @param projectId the project ID
@@ -4118,40 +4207,58 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue findByMD_P_AJUI_Last(Date modifiedDate, long projectId,
 		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByMD_P_AJUI_Last(modifiedDate, projectId,
+				assigneeJiraUserId, orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("modifiedDate=");
+		msg.append(modifiedDate);
+
+		msg.append(", projectId=");
+		msg.append(projectId);
+
+		msg.append(", assigneeJiraUserId=");
+		msg.append(assigneeJiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * @param modifiedDate the modified date
+	 * @param projectId the project ID
+	 * @param assigneeJiraUserId the assignee jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByMD_P_AJUI_Last(Date modifiedDate, long projectId,
+		String assigneeJiraUserId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByMD_P_AJUI(modifiedDate, projectId, assigneeJiraUserId);
 
 		List<JIRAIssue> list = findByMD_P_AJUI(modifiedDate, projectId,
 				assigneeJiraUserId, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("modifiedDate=");
-			msg.append(modifiedDate);
-
-			msg.append(", projectId=");
-			msg.append(projectId);
-
-			msg.append(", assigneeJiraUserId=");
-			msg.append(assigneeJiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a issues before and after the current j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraIssueId the primary key of the current j i r a issue
 	 * @param modifiedDate the modified date
@@ -4513,10 +4620,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	/**
 	 * Returns the first j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param projectId the project ID
 	 * @param reporterJiraUserId the reporter jira user ID
 	 * @param status the status
@@ -4529,38 +4632,56 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String reporterJiraUserId, String status,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByP_RJUI_S_First(projectId,
+				reporterJiraUserId, status, orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("projectId=");
+		msg.append(projectId);
+
+		msg.append(", reporterJiraUserId=");
+		msg.append(reporterJiraUserId);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
+	 *
+	 * @param projectId the project ID
+	 * @param reporterJiraUserId the reporter jira user ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByP_RJUI_S_First(long projectId,
+		String reporterJiraUserId, String status,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<JIRAIssue> list = findByP_RJUI_S(projectId, reporterJiraUserId,
 				status, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("projectId=");
-			msg.append(projectId);
-
-			msg.append(", reporterJiraUserId=");
-			msg.append(reporterJiraUserId);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param projectId the project ID
 	 * @param reporterJiraUserId the reporter jira user ID
@@ -4574,40 +4695,58 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String reporterJiraUserId, String status,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByP_RJUI_S_Last(projectId,
+				reporterJiraUserId, status, orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("projectId=");
+		msg.append(projectId);
+
+		msg.append(", reporterJiraUserId=");
+		msg.append(reporterJiraUserId);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
+	 *
+	 * @param projectId the project ID
+	 * @param reporterJiraUserId the reporter jira user ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByP_RJUI_S_Last(long projectId,
+		String reporterJiraUserId, String status,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByP_RJUI_S(projectId, reporterJiraUserId, status);
 
 		List<JIRAIssue> list = findByP_RJUI_S(projectId, reporterJiraUserId,
 				status, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("projectId=");
-			msg.append(projectId);
-
-			msg.append(", reporterJiraUserId=");
-			msg.append(reporterJiraUserId);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraIssueId the primary key of the current j i r a issue
 	 * @param projectId the project ID
@@ -4971,10 +5110,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	/**
 	 * Returns the first j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param projectId the project ID
 	 * @param assigneeJiraUserId the assignee jira user ID
 	 * @param status the status
@@ -4987,38 +5122,56 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String assigneeJiraUserId, String status,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByP_AJUI_S_First(projectId,
+				assigneeJiraUserId, status, orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("projectId=");
+		msg.append(projectId);
+
+		msg.append(", assigneeJiraUserId=");
+		msg.append(assigneeJiraUserId);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
+	 *
+	 * @param projectId the project ID
+	 * @param assigneeJiraUserId the assignee jira user ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByP_AJUI_S_First(long projectId,
+		String assigneeJiraUserId, String status,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<JIRAIssue> list = findByP_AJUI_S(projectId, assigneeJiraUserId,
 				status, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("projectId=");
-			msg.append(projectId);
-
-			msg.append(", assigneeJiraUserId=");
-			msg.append(assigneeJiraUserId);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param projectId the project ID
 	 * @param assigneeJiraUserId the assignee jira user ID
@@ -5032,40 +5185,58 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String assigneeJiraUserId, String status,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
+		JIRAIssue jiraIssue = fetchByP_AJUI_S_Last(projectId,
+				assigneeJiraUserId, status, orderByComparator);
+
+		if (jiraIssue != null) {
+			return jiraIssue;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("projectId=");
+		msg.append(projectId);
+
+		msg.append(", assigneeJiraUserId=");
+		msg.append(assigneeJiraUserId);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAIssueException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
+	 *
+	 * @param projectId the project ID
+	 * @param assigneeJiraUserId the assignee jira user ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue fetchByP_AJUI_S_Last(long projectId,
+		String assigneeJiraUserId, String status,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByP_AJUI_S(projectId, assigneeJiraUserId, status);
 
 		List<JIRAIssue> list = findByP_AJUI_S(projectId, assigneeJiraUserId,
 				status, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("projectId=");
-			msg.append(projectId);
-
-			msg.append(", assigneeJiraUserId=");
-			msg.append(assigneeJiraUserId);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAIssueException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraIssueId the primary key of the current j i r a issue
 	 * @param projectId the project ID
@@ -5791,7 +5962,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		throws SystemException {
 		Object[] finderArgs = new Object[] { modifiedDate, projectId };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MD_P,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_WITH_PAGINATION_COUNT_BY_MD_P,
 				finderArgs, this);
 
 		if (count == null) {
@@ -5835,7 +6006,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MD_P,
+				FinderCacheUtil.putResult(FINDER_PATH_WITH_PAGINATION_COUNT_BY_MD_P,
 					finderArgs, count);
 
 				closeSession(session);
@@ -6002,7 +6173,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				modifiedDate, projectId, reporterJiraUserId
 			};
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MD_P_RJUI,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_WITH_PAGINATION_COUNT_BY_MD_P_RJUI,
 				finderArgs, this);
 
 		if (count == null) {
@@ -6062,7 +6233,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MD_P_RJUI,
+				FinderCacheUtil.putResult(FINDER_PATH_WITH_PAGINATION_COUNT_BY_MD_P_RJUI,
 					finderArgs, count);
 
 				closeSession(session);
@@ -6087,7 +6258,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				modifiedDate, projectId, assigneeJiraUserId
 			};
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_MD_P_AJUI,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_WITH_PAGINATION_COUNT_BY_MD_P_AJUI,
 				finderArgs, this);
 
 		if (count == null) {
@@ -6147,7 +6318,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MD_P_AJUI,
+				FinderCacheUtil.putResult(FINDER_PATH_WITH_PAGINATION_COUNT_BY_MD_P_AJUI,
 					finderArgs, count);
 
 				closeSession(session);
