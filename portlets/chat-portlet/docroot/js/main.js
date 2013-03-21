@@ -1102,6 +1102,10 @@ AUI().use(
 						userEntryCache[entry.entryId] = entry;
 
 						instance._entryIds.push(entry.entryId);
+
+						if (entry.fromUserId == currentUserId) {
+							entry.flag = 1;
+						}
 					}
 				}
 			},
