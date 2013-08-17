@@ -46,7 +46,6 @@ $color: #3D7899;
 	.home-page #banner {
 		background: url(../images/custom/banner.jpg) 0 0 no-repeat;
 		height: $bannerHeight + $navHeight;
-		position: relative;
 	}
 
 	#banner {
