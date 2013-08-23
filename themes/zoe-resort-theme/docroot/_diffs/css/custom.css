@@ -23,10 +23,8 @@ $color: #3D7899;
 		width: 960px;
 	}
 
-	.signed-in {
-		#wrapper {
-			margin-top: 45px;
-		}
+	.signed-in #wrapper {
+		margin-top: 45px;
 	}
 
 	#sign-in {
