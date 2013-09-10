@@ -172,7 +172,7 @@ MailManager mailManager = MailManager.getInstance(request);
 
 					for (Message message : messages) {
 						String address = StringPool.BLANK;
-						String date = StringPool.BLANK;
+						String date = StringPool.DASH;
 
 						if (mailAccount.getSentFolderId() == folderId) {
 							address = message.getTo();
@@ -193,16 +193,10 @@ MailManager mailManager = MailManager.getInstance(request);
 							if (message.getModifiedDate() != null) {
 								date = dateFormatDateTime.format(message.getModifiedDate());
 							}
-							else {
-								date = StringPool.DASH;
-							}
 						}
 						else {
 							if (message.getSentDate() != null) {
 								date = dateFormatDateTime.format(message.getSentDate());
-							}
-							else {
-								date = StringPool.DASH;
 							}
 						}
 
