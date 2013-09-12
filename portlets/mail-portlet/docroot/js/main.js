@@ -34,7 +34,7 @@ AUI.add(
 			addAccount: function() {
 				var instance = this;
 
-				Liferay.Util.Window.getWindow(
+				instance.modal = Liferay.Util.Window.getWindow(
 					{
 						dialog: {
 							centered: true,
@@ -128,7 +128,7 @@ AUI.add(
 			editAccount: function(accountId) {
 				var instance = this;
 
-				Liferay.Util.Window.getWindow(
+				instance.modal = Liferay.Util.Window.getWindow(
 					{
 						dialog: {
 							centered: true,
@@ -239,6 +239,8 @@ AUI.add(
 						}
 					}
 				);
+
+				instance._hideWindow();
 			},
 
 			loadCompose: function(accountId, messageId, messageType, replyMessageId) {
@@ -280,6 +282,8 @@ AUI.add(
 
 					instance.foldersContainer.io.start();
 				}
+
+				instance._hideWindow();
 			},
 
 			loadManageFolders: function(accountId) {
@@ -402,7 +406,7 @@ AUI.add(
 			passwordPrompt: function(accountId, inboxFolderId) {
 				var instance = this;
 
-				Liferay.Util.Window.getWindow(
+				instance.modal = Liferay.Util.Window.getWindow(
 					{
 						dialog: {
 							centered: true,
@@ -450,6 +454,8 @@ AUI.add(
 				instance.loadAccounts();
 
 				instance._pollStopMessages();
+
+				instance._hideWindow();
 			},
 
 			setStatus: function(type, message, indefinite) {
@@ -549,20 +555,25 @@ AUI.add(
 						uri: themeDisplay.getLayoutURL() + '/-/mail/view_messages',
 						after: {
 							success: function() {
-								instance.messagesContainer.all('.flag-messages select').on(
-									'change',
+								instance.messagesContainer.all('.flag-messages').on(
+									'click',
 									function(event) {
 										var messageIds = instance._getSelectedMessageIds();
-										var values = event.currentTarget.get('value').split(',');
 
-										instance.flagMessages(values[0], values[1], messageIds);
+										var currentTarget = event.currentTarget;
+
+										var flagType = currentTarget.getData('flagType');
+										var flagToggle = currentTarget.getData('flagToggle');
+
+										instance.flagMessages(flagType, flagToggle, messageIds);
 									}
 								);
 
-								instance.messagesContainer.all('.move-messages select').on(
-									'change',
+								instance.messagesContainer.all('.move-messages').on(
+									'click',
 									function(event) {
-										var folderId = event.currentTarget.get('value');
+										var folderId = A.Lang.String.trim(event.currentTarget.text());
+
 										var messageIds = instance._getSelectedMessageIds();
 
 										instance.moveMessages(folderId, messageIds);
@@ -578,8 +589,8 @@ AUI.add(
 					function(event) {
 						var link = event.currentTarget;
 
-						var accountId = link.getAttribute('data-accountId');
-						var inboxFolderId = link.getAttribute('data-inboxFolderId');
+						var accountId = link.getData('accountId');
+						var inboxFolderId = link.getData('inboxFolderId');
 
 						instance.loadAccounts(accountId);
 						instance.loadAccount(accountId, inboxFolderId);
@@ -590,9 +601,7 @@ AUI.add(
 				instance.composeContainer.delegate(
 					'click',
 					function(event) {
-						var button = event.currentTarget.one('input[type="button"]');
-
-						var messageId = button.getAttribute('data-messageId');
+						var messageId = event.currentTarget.getData('messageId');
 
 						instance.deleteMessages([messageId]);
 					},
@@ -604,11 +613,11 @@ AUI.add(
 					function(event) {
 						var link = event.currentTarget;
 
-						var folderId = link.getAttribute('data-folderId');
-						var messageNumber = link.getAttribute('data-messageNumber');
-						var orderByField = link.getAttribute('data-orderByField');
-						var orderByType = link.getAttribute('data-orderByType');
-						var keywords = link.getAttribute('data-keywords');
+						var folderId = link.getData('folderId');
+						var messageNumber = link.getData('messageNumber');
+						var orderByField = link.getData('orderByField');
+						var orderByType = link.getData('orderByType');
+						var keywords = link.getData('keywords');
 
 						instance.loadMessage(folderId, messageNumber, orderByField, orderByType, keywords);
 					},
@@ -620,7 +629,7 @@ AUI.add(
 					function(event) {
 						var link = event.currentTarget;
 
-						var messageId = link.getAttribute('data-messageId');
+						var messageId = link.getData('messageId');
 
 						instance.loadCompose(instance.accountId, messageId, "edit", 0);
 					},
@@ -648,11 +657,11 @@ AUI.add(
 					function(event) {
 						var link = event.currentTarget;
 
-						var folderId = link.getAttribute('data-folderId');
-						var pageNumber = link.getAttribute('data-pageNumber');
-						var orderByField = link.getAttribute('data-orderByField');
-						var orderByType = link.getAttribute('data-orderByType');
-						var keywords = link.getAttribute('data-keywords');
+						var folderId = link.getData('folderId');
+						var pageNumber = link.getData('pageNumber');
+						var orderByField = link.getData('orderByField');
+						var orderByType = link.getData('orderByType');
+						var keywords = link.getData('keywords');
 
 						instance.loadMessages(folderId, pageNumber, orderByField, orderByType, keywords);
 					},
@@ -668,9 +677,9 @@ AUI.add(
 							link = link.one('input[type="button"]');
 						}
 
-						var messageId = link.getAttribute('data-messageId');
-						var messageType = link.getAttribute('data-messageType');
-						var replyMessageId = link.getAttribute('data-replyMessageId');
+						var messageId = link.getData('messageId');
+						var messageType = link.getData('messageType');
+						var replyMessageId = link.getData('replyMessageId');
 
 						instance.loadCompose(instance.accountId, messageId, messageType, replyMessageId);
 					},
@@ -689,9 +698,7 @@ AUI.add(
 				instance.messageContainer.delegate(
 					'click',
 					function(event) {
-						var button = event.currentTarget.one('input[type="button"]');
-
-						var messageId = button.getAttribute('data-messageId');
+						var messageId = event.currentTarget.getData('messageId');
 
 						instance.deleteMessages([messageId]);
 					},
@@ -711,11 +718,11 @@ AUI.add(
 				instance.messagesContainer.delegate(
 					'click',
 					function(event) {
-						var keywords = instance.messagesContainer.one('.search input').val();
+						var keywords = event.currentTarget.ancestor('.search-messages').one('input').val();
 
 						instance.loadMessages(instance.folderId, 1, instance.orderByField, instance.orderByType, keywords);
 					},
-					'.search-messages'
+					'.search-messages button'
 				);
 
 				instance.messagesContainer.delegate(
@@ -725,11 +732,11 @@ AUI.add(
 							return;
 						}
 
-						var keywords = instance.messagesContainer.one('.search input').val();
+						var keywords = event.currentTarget.val();
 
 						instance.loadMessages(instance.folderId, 1, instance.orderByField, instance.orderByType, keywords);
 					},
-					'.search'
+					'.search-messages input'
 				);
 
 				instance.messagesContainer.delegate(
@@ -786,6 +793,17 @@ AUI.add(
 				);
 
 				return messageIds;
+			},
+
+			_hideWindow: function() {
+				var instance = this;
+
+				var modal = instance.modal;
+
+				if (modal) {
+					modal.hide();
+				}
+
 			},
 
 			_pollCheckMessages: function() {

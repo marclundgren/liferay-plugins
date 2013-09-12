@@ -105,7 +105,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 				{
 					dataType: 'json',
 					form: {
-						id: form.getDOM()
+						id: form.getDOMNode()
 					},
 					on: {
 						failure: function(event, id, obj) {
@@ -115,8 +115,6 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 							var responseData = this.get('responseData');
 
 							Liferay.Mail.setStatus(responseData.status, responseData.message);
-
-							A.DialogManager.closeByChild(form);
 						}
 					}
 				}
@@ -155,8 +153,6 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 
 							if (responseData.status == 'success') {
 								Liferay.Mail.reset();
-
-								A.DialogManager.closeByChild(form);
 							}
 						}
 					}
