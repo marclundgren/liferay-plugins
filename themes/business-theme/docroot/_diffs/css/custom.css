@@ -1,0 +1,625 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+@font-face {
+  font-family: droidsans;
+  src: local('☺'),
+       url('DroidSans.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: droidsansbold;
+  src: local('☺'),
+       url('DroidSans-Bold.ttf') format('truetype');
+}
+
+/*top bar*/
+/*========================================================================*/
+.aui body {
+    background: #eee;
+}
+
+#site-logo {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    height: 43px;
+    width: 41px;
+}
+#top-subtitle {
+    font-size: 10px;
+    display: inline-block;
+    position: absolute;
+    padding: 0px;
+    z-index: 1000;
+    top: 38px;
+    left: 96px;
+    font-weight: normal;
+    color: #666666;
+    font-size: 12px;
+    font-family: droidsans,serif;
+}
+#topborder{
+    width: 1000px;
+    height: 3px;
+    background: #b81007;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 9001;
+}
+
+.aui .sitetitle .navbar-inner {
+    min-height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #ffffff;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+#header-title {
+    text-decoration: none;
+    line-height: 1.2em;
+    font-size: 24px;
+    font-weight: normal;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-family: droidsansbold,serif;
+    transition: color 0.2s ease-in-out;
+    color: #222;
+    position: absolute;
+    top: 20px;
+    left: 96px;
+
+}
+
+#header-title:hover {
+    text-decoration: none;
+    line-height: 1.2em;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-family: droidsansbold,serif;
+    transition: color 0.2s ease-in-out;
+    color: #b81007;
+}
+
+.aui a:hover, .aui a:focus {
+    color: #b81007;
+    text-decoration: none;
+}
+
+.aui a {
+    color: #333333;
+    transition: color 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+#navigation {
+    font-size: 10px;
+    width: 500px;
+    display: inline-block;
+
+}
+
+#logoset {
+    display: inline-block;
+    margin-top: -48px;
+}
+
+
+/*dropdown*/
+/*========================================================================*/
+.aui h1, .aui h2, .aui h3, .aui h4, .aui h5, .aui h6 {
+    text-rendering: auto;
+}
+
+/*caret*/
+
+.aui .dockbar-split .dockbar .navbar-inner .nav > li > a [class^="icon-caret"]{
+    margin-top: -18px;
+    margin-left: 12px;
+}
+
+.aui a [class^="icon-caret"], .aui a [class*=" icon-caret"] {
+    background: url(http://business-theme.techsaran.com/sites/all/themes/business/images/arrows-down.png);
+    width: 9px;
+    height: 5px;
+    overflow: hidden;
+    margin-left: 12px;
+    margin-top: -11px;
+    float: right;
+    margin-right: -5px;
+}
+
+
+.aui .navbar .nav > li > .dropdown-menu:after {
+    content: "";
+    display: inline-block;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #FFF;
+    position: absolute;
+    top: -6px;
+    left: 10px;
+    clear: both;
+    color: #555555;
+}
+
+.aui .navbar .nav > li > .dropdown-menu:before {
+    content: "";
+    display: inline-block;
+     border-right: 7px solid transparent;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: -7px;
+    left: 9px;
+    clear: both;
+    color: #555555;
+}
+
+.aui .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0px;
+    margin: 2px 0px 0px;
+    list-style: none outside none;
+    background-color: #FFF;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+
+}
+/*========================================================================*/
+
+
+
+#wrapper {
+    /* top right bottom left */
+    padding: 0px 40px 0px 40px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+
+    width: 920px;
+    background: #ffffff;
+
+    @include respond-to(phone) {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
+
+    @include respond-to(tablet) {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
+}
+
+/* nav menu */
+/*=======================================================================*/
+
+.aui .navbar .nav li.dropdown.open > .dropdown-toggle, .aui .navbar .nav .li.dropdown.active > .dropdown-toggle, .aui .navbar .nav .li.dropdown.open.active > .dropdown-toggle {
+    color: #fff;
+    text-decoration: none;  
+    background: #b81007;
+}
+.aui #heading .navbar .nav > li > a {
+    float: none;
+    padding: 18px 15px;
+    transition: background 0.2s ease-in-out;
+    text-decoration: none;
+    text-shadow: none;
+    cursor: auto;
+    font-size: 14px;
+    text-align: -webkit-match-parent;
+    font-weight: normal;
+    letter-spacing: 0px;
+    font-family: droidsans,serif;
+
+}
+
+.aui #heading .navbar-inner {
+    position: absolute;
+    top: 0px;
+    left: 443px;
+
+}
+
+.aui .navbar .nav > .active > a:focus {
+    text-decoration: none;
+    background: #b81007;
+}
+.aui .navbar .nav > .active > a, .aui .navbar .nav > .active > a:hover, .aui .navbar .nav > .active > a:focus {
+    color: #fff;
+    background: #b81007;
+    box-shadow: none;
+}
+
+.aui .navbar .nav > li > a:hover {
+    color: #fff;
+    text-decoration: none;  
+    background: #b81007;
+}
+
+
+/* cp menu */
+/*=======================================================================*/
+
+.aui .dockbar-split .dockbar .navbar-inner .nav > li > a:focus, .aui .dockbar-split .dockbar .navbar-inner .nav > li > a:hover {
+    color: #FFF;
+    background: #b81007;
+}
+
+.aui .dockbar-split .dockbar .navbar-inner .nav li.dropdown.open > .dropdown-toggle {
+    background: #b81007;
+    color: #FFF;
+}
+
+.aui .dockbar-split .dockbar .navbar-inner .nav > li > a {
+    color: #f3f3f3;
+    position: relative;
+    background: #939393;
+    transition: background 0.2s ease-in-out;
+    font-weight: bold;
+    font-size: 100%;
+    padding: 10px 12px;
+    margin: 0px;
+}
+
+.aui .dockbar-split .dockbar .navbar-inner .nav{
+    -webkit-box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.27);
+    -moz-box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.27);
+    box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.27);
+    border-top-style: solid;
+    border-top-color: #b81007;
+    border-top-width: 3px;
+}
+/*Repositioning floating dock buttons*/
+.aui .dockbar-split .dockbar {
+    position: relative;
+    z-index: 10;
+}
+
+/*change ugly gree side button*/
+.aui .dockbar-split .dockbar .navbar-inner .nav-add-controls > li > a.toggle-controls-link {
+    background: #841b16;
+    border-top-style: solid;
+    border-top-color: #fff;
+    border-top-width: 3px;
+}
+
+/* move side bar */
+.aui .dockbar-split .dockbar .navbar-inner .nav-add-controls {
+    position: fixed;
+    top: 35%;
+    left: 20px;
+    padding: -10px -10px;
+    opacity:0.3;
+    transition: opacity .35s ease-in-out;
+}
+
+.aui .dockbar-split .dockbar.navbar-static-top .collapse .nav-account-controls {
+position: fixed;
+    background: transparent;
+    padding: 10px 10px;
+    top: 16px;
+    right: 45px;
+    opacity:0.3;
+    transition: opacity .35s ease-in-out;
+}
+
+.aui .dockbar-split .dockbar.navbar-static-top .collapse .nav-account-controls:hover {
+position: fixed;
+    opacity:1;
+}
+
+.aui .dockbar-split .dockbar .navbar-inner .nav-add-controls:hover {
+    opacity:1;
+}
+
+.aui .dockbar .navbar-inner .site-administration-menu li a:focus, .aui .dockbar .navbar-inner .site-administration-menu li a:hover {
+    background: #b81007;
+}
+
+.aui .dropdown-menu > li > a:hover, .aui .dropdown-menu > li > a:focus, .aui .dropdown-submenu:hover > a, .aui .dropdown-submenu:focus > a {
+    background: #b81007;
+}
+
+.aui .dropdown-menu > .active > a, .aui .dropdown-menu > .active > a:hover, .aui .dropdown-menu > .active > a:focus {
+    background: #b81007;
+}
+/*=======================================================================*/
+
+/*Welcome Display*/
+#home-quote {
+    text-align: center;
+    background: #F9F9F9;
+    color: #666;
+    border-top: 1px solid #EEE;
+    border-bottom: 1px solid #EEE;
+    padding: 20px;
+}
+
+#home-quote h2 {
+    margin-top: 0px;
+    color: #000;
+    font-family: 'Droid Sans', serif;
+    font-size: 21px;
+    line-height: 1.5em;
+    font-weight: normal;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+
+#home-quote p{
+        font-family: 'Droid Sans', serif;
+        font-size: 16px;
+        color: #666;
+        margin-top: 1px;
+        padding-top: 1px;
+        padding-bottom: 1px;
+}
+
+.aui .portlet-borderless-container .portlet-body select {
+    height: 30px;
+    line-height: 30px;
+    display: none;
+}
+
+
+/*Search bar*/
+/*=======================================================================*/
+.aui .portlet-borderless-container .portlet-body input[type="text"] {
+    border-radius: 3px;
+    border: 1px solid #acacac;
+    padding: 4px 5px;
+    vertical-align: middle;
+    background-color: white;
+    
+    margin: 0em;
+    font: -webkit-small-control;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-writing-mode: horizontal-tb;
+    width: 130px;
+    -webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    cursor: auto;
+    -webkit-appearance: textfield;
+    margin-top: 34px;
+    margin-left: 33px;
+    height: 16px;
+    width: 119px;
+}
+
+.aui .portlet-borderless-container .portlet-body input[type="text"]:focus {
+    box-shadow: none;
+    -webkit-appearance: textfield;
+    -webkit-user-select: text;
+}
+
+
+.aui .portlet-borderless-container .portlet-body form input[type="image"] {
+      margin-top: 32px;
+      margin-left: 4px;
+}
+
+/* Paypal*/
+/*=======================================================================*/
+
+
+.paycontainer {
+    width: 260px;
+    margin-left: 31px;
+    margin-top: 35px;
+    font-family: droidsans,serif;
+}
+
+.aui .paycontainer h2.paytitle {
+    color: #666;
+    line-height: 1.5em;
+    font-size: 21px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    vertical-align: baseline;
+    background: transparent;
+    display: block;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 9px;
+    margin-bottom: 40px;
+    font-family: droidsansbold,serif;
+    font-weight: normal;
+}
+
+.paycontainer .download {
+    width: 268px;
+}
+
+.aui .paycontainer .paytext1 {
+    
+    margin: 0 0 0.8em;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    display: block;
+    line-height: 1.5em;
+    color: #333;
+    margin-top: -30px;
+}
+
+.aui .paycontainer a {
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    color: #2E70B1;
+}
+
+.aui .paycontainer a:hover {
+    color: #B81007;
+}
+
+.aui .paycontainer strong {
+    font-weight: normal;
+    font-family: droidsansbold,serif;
+}
+
+.aui .paycontainer form {
+    margin-left: -4px;
+    margin-top: -31px;
+}
+
+.aui .paycontainer .download {
+    margin-top: -19px;
+}
+
+/* Asset Title*/
+/*=======================================================================*/
+
+.aui .asset-title img {
+    display:none;
+}
+
+.portlet-asset-publisher .asset-title {
+    border: 0;
+    margin-bottom: 40px;
+}
+
+.aui .asset-title a {
+    text-decoration: none;
+    color: #000;
+    transition: color 0.2s ease-in-out;
+    cursor: auto;
+    font-size: 21px;
+    line-height: 1.5em;
+    font-weight: normal;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-family: droidsans,serif;
+}
+
+.aui .asset-title {
+    margin-top: 37px;
+}
+
+.aui .asset-title a:hover {
+    color: #b81008;
+}
+
+.portlet-asset-publisher .asset-title a:hover {
+    text-decoration: none;
+}
+
+.metadata-entry.metadata-author:before {
+    content: "Submitted ";
+}
+
+.portlet-asset-publisher .metadata-author {
+    position: absolute;
+    
+    background: #dfdddd;
+    padding: 4px 9px;
+    border-radius: 4px;
+    color: #383838;
+    text-shadow: 1px 1px #fff;
+    clear: both;
+    display: block;
+    font-family: droidsans,serif;
+    font-weight: normal;
+    margin-top: -330px;
+    margin-left: -25px;
+    width: 602px;
+    padding-bottom: 5px;
+} 
+/*.portlet-asset-publisher .asset-abstract {
+margin-bottom: 2em;
+}*/
+
+
+
+.asset-content .asset-summary {
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    line-height: 1.5em;
+    color: #333;
+    font-family: droidsans,serif;
+    font-size: 100%;
+    margin-left: -25.5px;
+    width: 620px;
+}   
+
+.portlet-asset-publisher .asset-small-image {
+    margin-top: -2.5px;
+    float: left;
+    margin-left: -7px;
+    margin-right: 0px;
+    width: 220px;
+    padding-right: 400px;
+    padding-bottom: 3px;
+}
+
+.asset-content .asset-summary br{
+    display: block;
+    content: " ";
+    margin: 12px 0;
+
+}   
+
+.navbar-inner .container .user-avatar-image {
+    position: relative;
+    max-width: 1000%;
+    left: 90px;
+    top: 10px;
+    width: 50px;
+    padding: 8px;
+    -webkit-box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.27);
+    -moz-box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.27);
+    box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.27);
+    border-top-style: solid;
+    border-top-color: rgba(184,16,17,0.50);
+    border-top-width: 3px;
+    background: rgba(255,255,255,0.30);
+}
+
+.aui .dockbar .user-avatar img {
+    left: auto;
+    right: auto;
+    top: auto;
+    width: 20px;
+    height: 20px;
+    box-shadow: none;
+    border: none;
+    max-width: 100%;
+    padding: 0px;
+}
+
+.aui .dropdown-menu {
+    margin: 0 !important;
+    border-right: none !important;
+    border-bottom: none !important;
+
+    padding: 3px !important;
+    border-radius: 0px;
+    background: white;
+    border: 0px;
+    font-family: droidsans,serif;
+    font-size: 14px;
+}
+

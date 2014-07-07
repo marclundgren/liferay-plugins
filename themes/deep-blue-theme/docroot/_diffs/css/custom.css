@@ -1,0 +1,297 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+@font-face {
+  font-family: droidsans;
+  src: local('☺'),
+       url('DroidSans.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: droidsansbold;
+  src: local('☺'),
+       url('DroidSans-Bold.ttf') format('truetype');
+}
+
+/*top bar*/
+/*========================================================================*/
+#top-subtitle {
+    font-size: 10px;
+    display: inline-block;
+    position: absolute;
+    padding: 0px;
+    z-index: 1000;
+    top: 60px;
+    left: 40px;
+}
+#topborder{
+    width: 1000px;
+    height: 3px;
+    background: #b81007;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 9001;
+    left: -8px;
+}
+
+.aui .navbar-inner {
+    min-height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #ffffff;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+#header-title {
+    text-decoration: none;
+    line-height: 1.2em;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-family: droidsansbold,serif;
+    transition: color 0.2s ease-in-out;
+    color: #222;
+    margin-left: -3px;
+    margin-top: -4px;
+}
+
+#header-title:hover {
+    text-decoration: none;
+    line-height: 1.2em;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-family: droidsansbold,serif;
+    transition: color 0.2s ease-in-out;
+    color: #b81007;
+}
+
+.aui a:hover, .aui a:focus {
+    color: #b81007;
+    text-decoration: none;
+}
+
+.aui a {
+    color: #333333;
+    transition: color 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+#navigation {
+    font-size: 10px;
+    width: 500px;
+    display: inline-block;
+
+}
+
+#logoset {
+    display: inline-block;
+    margin-top: -24px;
+}
+
+
+/*dropdown*/
+/*========================================================================*/
+
+.aui .navbar .nav > li > .dropdown-menu:after {
+    content: "";
+    display: inline-block;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #FFF;
+    position: absolute;
+    top: -6px;
+    left: 10px;
+    lear: both;
+}
+
+.aui .navbar .nav > li > .dropdown-menu:before {
+    content: "";
+    display: inline-block;
+     border-right: 7px solid transparent;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: -7px;
+    left: 9px;
+    lear: both;
+}
+
+.aui .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0px;
+    margin: 2px 0px 0px;
+    list-style: none outside none;
+    background-color: #FFF;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+
+}
+/*========================================================================*/
+
+
+
+#wrapper {
+    /* top right bottom left */
+    padding: 0px 40px 0px 40px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    left: -8px;
+    width: 920px;
+    background: #ffffff;
+
+    @include respond-to(phone) {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
+
+    @include respond-to(tablet) {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
+}
+
+/* nav menu */
+/*=======================================================================*/
+
+.aui .navbar .nav li.dropdown.open > .dropdown-toggle, .aui .navbar .nav .li.dropdown.active > .dropdown-toggle, .aui .navbar .nav .li.dropdown.open.active > .dropdown-toggle {
+    color: #fff;
+    text-decoration: none;  
+    background: #b81007;
+}
+.aui .navbar .nav > li > a {
+    float: none;
+    padding: 18px 15px;
+    color: #555555;
+    transition: background 0.2s ease-in-out;
+    text-decoration: none;
+    text-shadow: none;
+    cursor: auto;
+    font-size: 14px;
+    text-align: -webkit-match-parent;
+    font-weight: normal;
+    letter-spacing: 0px;
+    font-family: droidsans,serif;
+}
+
+.aui .navbar .nav > .active > a:focus {
+    text-decoration: none;
+    background: #b81007;
+}
+.aui .navbar .nav > .active > a, .aui .navbar .nav > .active > a:hover, .aui .navbar .nav > .active > a:focus {
+    color: #fff;
+    background: #b81007;
+    box-shadow: none;
+}
+
+.aui .navbar .nav > li > a:hover {
+    color: #fff;
+    text-decoration: none;  
+    background: #b81007;
+}
+
+/* cp menu */
+/*=======================================================================*/
+
+.aui .dockbar-split .dockbar .navbar-inner .nav > li > a:focus, .aui .dockbar-split .dockbar .navbar-inner .nav > li > a:hover {
+    color: #FFF;
+    background: #b81007;
+}
+
+.aui .dockbar-split .dockbar .navbar-inner .nav li.dropdown.open > .dropdown-toggle {
+    background: #b81007;
+    color: #FFF;
+}
+
+.aui .dockbar-split .dockbar .navbar-inner .nav > li > a {
+    color: #f3f3f3;
+    position: relative;
+    background: #939393;
+    transition: background 0.2s ease-in-out;
+    font-weight: bold;
+    font-size: 100%;
+    padding: 10px 12px;
+}
+
+.aui .dockbar-split .dockbar .navbar-inner .nav{
+    -webkit-box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.27);
+    -moz-box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.27);
+    box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.27);
+    border-top-style: solid;
+    border-top-color: #b81007;
+    border-top-width: 3px;
+}
+/*Repositioning floating dock buttons*/
+.aui .dockbar-split .dockbar {
+    position: relative;
+    z-index: 10;
+
+}
+
+/*Change the color of the icons on the side buttons*/
+.aui [class^="icon-"]:before, .aui [class*=" icon-"]:before {
+    color: #fff;
+}
+
+/*change ugly gree side button*/
+.aui .dockbar-split .dockbar .navbar-inner .nav-add-controls > li > a.toggle-controls-link {
+    background: #841b16;
+    border-top-style: solid;
+    border-top-color: #fff;
+    border-top-width: 3px;
+}
+
+/* move side bar */
+.aui .dockbar-split .dockbar .navbar-inner .nav-add-controls {
+    position: fixed;
+    top: 35%;
+    left: 20px;
+    padding: -10px -10px;
+    opacity:0.3;
+    transition: opacity .35s ease-in-out;
+}
+
+.aui .dockbar-split .dockbar.navbar-static-top .collapse .nav-account-controls {
+position: fixed;
+    background: transparent;
+    padding: 10px 10px;
+    top: 16px;
+    right: 45px;
+    opacity:0.3;
+    transition: opacity .35s ease-in-out;
+}
+
+.aui .dockbar-split .dockbar.navbar-static-top .collapse .nav-account-controls:hover {
+position: fixed;
+    opacity:1;
+}
+
+.aui .dockbar-split .dockbar .navbar-inner .nav-add-controls:hover {
+    opacity:1;
+}
+
+.aui .dockbar .navbar-inner .site-administration-menu li a:focus, .aui .dockbar .navbar-inner .site-administration-menu li a:hover {
+    background: #b81007;
+}
+
+.aui .dropdown-menu > li > a:hover, .aui .dropdown-menu > li > a:focus, .aui .dropdown-submenu:hover > a, .aui .dropdown-submenu:focus > a {
+    background: #b81007;
+}
+
+.aui .dropdown-menu > .active > a, .aui .dropdown-menu > .active > a:hover, .aui .dropdown-menu > .active > a:focus {
+    background: #b81007;
+}
+/*=======================================================================*/
