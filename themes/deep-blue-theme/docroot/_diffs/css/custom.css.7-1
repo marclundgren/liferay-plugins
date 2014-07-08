@@ -1,0 +1,3 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+@import url(color_schemes/day.css);
+@import url(color_schemes/night.css);
