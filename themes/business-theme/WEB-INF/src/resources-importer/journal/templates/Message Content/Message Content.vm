@@ -1,0 +1,76 @@
+#set($title = $Title.Data)
+#set($description = $Content.Data)
+
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<style type="text/css">
+/* Paypal*/
+/*=======================================================================*/
+
+
+.paycontainer {
+    /*margin-left: 31px;*/
+    margin-top: 25px;
+    font-family: droidsans,serif;
+    -webkit-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.15);
+    box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.15);
+    background: #f9f9f9;
+    padding: 8px 17px;
+    margin-left: auto;
+    margin-right: auto;
+        border-top-style: solid;
+    border-top-color: rgba(184,16,17,0.50);
+    border-top-width: 3px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.paytriangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 18px 0 18px;
+    border-color: #ccc transparent transparent transparent;
+    margin: 0px auto;
+    margin-bottom: 10px;
+}
+.aui .paycontainer h2.paytitle {
+    color: #666;
+    line-height: 1.5em;
+    font-size: 21px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    vertical-align: baseline;
+    background: transparent;
+    display: block;
+    border-bottom: 1px solid #dbdbdb;
+    padding-bottom: 9px;
+    margin-bottom: 40px;
+    font-family: droidsansbold,serif;
+    font-weight: normal;
+    text-align: center;
+}
+
+
+.aui .paycontainer .paytext1 {
+    margin: 0 0 0.8em;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    display: block;
+    line-height: 1.5em;
+    color: #333;
+    margin-top: -30px;
+    text-align: center;
+}
+
+
+</style>
+<div class="paycontainer">
+<h2 class="paytitle">$title</h2>
+
+<div class="paytext1">
+$description
+</div>
+</div>
+<div class="paytriangle"> </div>
