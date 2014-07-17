@@ -45,7 +45,7 @@
     position: absolute;
     padding: 0px;
     z-index: 1000;
-    top: 43px;
+    top: 33px;
     left: 106px;
     font-weight: normal;
     color: #666666;
@@ -128,18 +128,20 @@
     position: relative;
     z-index: 100;
     background: white;
+    /*margin-top: -10px;*/
 }
 
 #bgwrapper {
     background: #fff;
 }
+
 #navwrapper {
-    padding: 0px 40px 0px 40px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    width: 940px;
+    width: 1020px;
     background: #ffffff;
+    margin-top: -10px;
 
 /*    @include respond-to(phone) {
         padding-left: 0.5em;
@@ -682,10 +684,7 @@ margin-bottom: 2em;
 }   
 
 .navbar-inner .container .user-avatar-image {
-    position: relative;
-    max-width: 1000%;
-    left: 90px;
-    top: 10px;
+
     width: 50px;
     padding: 8px;
     -webkit-box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.27);
@@ -918,36 +917,58 @@ margin-bottom: 2em;
     margin-top: 20px;
 }
 
-@media screen and (max-width : 1320px) {
+/*alert colors*/
+
+.aui .alert-info, .aui .portlet-msg-help, .aui .portlet-msg-info, .aui .portlet-msg-progress {
+    background: #f9f9f9;
+    border-color: #d1d1d1;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.3);
+    -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.3);
+    box-shadow: 1px 2px 3px rgba(0,0,0,.3);
+    text-align: center;
+}
+
+@media (max-width : 1320px) {
     #wrapper {
         width: 800px;
-    }
-    .carousel-item {
-        width: 882px;
-        border-top: 2px solid gray;
-        border-bottom: 2px solid gray;
-    }
-
-    #test {
-        display: none;
     }
 
     .carousel menu {
         display: none;
     }
 
-    .component.carousel {
-        margin-bottom: -20px;
-        margin-left: -41px;
-
-    }
-
-    #home-quote{
-        width: 840px;
-        margin-left: -40px;
-    }
-
     .aui .portlet-borderless-container .portlet-body input[type="text"][title="Search"]{
-        margin-left: 22px;
+        margin-left: 10%;
     }
 }
+
+@media (max-width: 1020px) {
+    #navwrapper {
+        width: 100%;
+    }
+}
+
+@media (max-width : 941px) {
+    #topborder  {
+        width: 100%;
+    }
+    
+}
+
+@media (max-width : 884px) {
+    #wrapper {
+        width: calc(100% - 82px);
+    }
+}
+
+@media (max-width: 767px) {
+    .aui body {
+        padding: 0;
+    }
+}
+
+
+/*workin on responsive menus here, you made decent progress*/

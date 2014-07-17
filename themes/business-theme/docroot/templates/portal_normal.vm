@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 #parse ($init)
-
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 <html class="$root_css_class" dir="#language ("lang.dir")" lang="$w3c_language_id">
 
 <head>
@@ -13,15 +13,16 @@
 </head>
 
 <body class="$css_class" id="complete">
-
+#dockbar()
 <a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
 
 $theme.include($body_top_include)
 <div id="topborder"></div>
-#dockbar()
-<div class="container-fluid" id="wrapper">
-    <header id="banner" role="banner">
-        <div id="heading">
+<div id="topbordergray"></div>
+
+<header id="banner" role="banner">
+    <div id="heading">
+        <div id="navwrapper">
             <h1 class="site-title">
                 <a class="$logo_css_class" id="logoset" href="$site_default_url" title="#language_format ("go-to-x", [$site_name])">
                     <img id="site-logo" alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
@@ -37,32 +38,36 @@ $theme.include($body_top_include)
                 #parse ("$full_templates_path/navigation.vm")
                 #end
             </h1>
-            ##<h2 class="page-title">
-            ##    <span>$the_title</span>
-            ##</h2>
+        </div>
+        ##<h2 class="page-title">
+        ##    <span>$the_title</span>
+        ##</h2>
+    </div>
+</header>
+
+
+<div id="bgwrapper">
+    <div class="container-fluid" id="wrapper">
+        <div id="content">
+            ##<nav id="breadcrumbs">#breadcrumbs()</nav>
+
+            #if ($selectable)
+                $theme.include($content_include)
+            #else
+                $portletDisplay.recycle()
+
+                $portletDisplay.setTitle($the_title)
+
+                $theme.wrapPortlet("portlet.vm", $content_include)
+            #end
         </div>
 
-    </header>
-
-    <div id="content">
-        ##<nav id="breadcrumbs">#breadcrumbs()</nav>
-
-        #if ($selectable)
-            $theme.include($content_include)
-        #else
-            $portletDisplay.recycle()
-
-            $portletDisplay.setTitle($the_title)
-
-            $theme.wrapPortlet("portlet.vm", $content_include)
-        #end
+        <footer id="footer" role="contentinfo">
+            <p class="powered-by">
+                #language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
+            </p>
+        </footer>
     </div>
-
-    <footer id="footer" role="contentinfo">
-        <p class="powered-by">
-            #language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
-        </p>
-    </footer>
 </div>
 
 $theme.include($body_bottom_include)
