@@ -1,52 +1,68 @@
 <!DOCTYPE html>
 
 #parse ($init)
-<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+
 <html class="$root_css_class" dir="#language ("lang.dir")" lang="$w3c_language_id">
 
 <head>
     <title>$the_title - $company_name</title>
 
     <meta content="initial-scale=1.0, width=device-width" name="viewport" />
-
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
     $theme.include($top_head_include)
 </head>
 
 <body class="$css_class" id="complete">
-#dockbar()
-<a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
+    <a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
 
-$theme.include($body_top_include)
-<div id="topborder"></div>
-<div id="topbordergray"></div>
+    $theme.include($body_top_include)
 
-<header id="banner" role="banner">
-    <div id="heading">
-        <div id="navwrapper">
-            <h1 class="site-title">
-                <a class="$logo_css_class" id="logoset" href="$site_default_url" title="#language_format ("go-to-x", [$site_name])">
-                    <img id="site-logo" alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
+    
+    <header id="banner" role="banner">
+        <div id="heading">
+            <div id="navwrapper">
+                <h1 class="site-title">
+                    <a class="$logo_css_class" id="logoset" href="$site_default_url" title="#language_format ("go-to-x", [$site_name])">
+                        <img id="site-logo" alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
 
-                    #if ($show_site_name)
-                        <span id="header-title" class="site-name" title="#language_format ("go-to-x", [$site_name])">
-                            $site_name
-                        </span>
+                        #if ($show_site_name)
+                            <span id="header-title" class="site-name" title="#language_format ("go-to-x", [$site_name])">
+                                $site_name
+                            </span>
+                        #end
+                        <a id="top-subtitle">Drupal and Web development</a>
+                    </a>
+                    #if ($has_navigation || $is_signed_in)
+                    #parse ("$full_templates_path/navigation.vm")
                     #end
-                    <a id="top-subtitle">Drupal and Web development</a>
-                </a>
-                #if ($has_navigation || $is_signed_in)
-                #parse ("$full_templates_path/navigation.vm")
-                #end
-            </h1>
+                </h1>
+            </div>
+            ##<h2 class="page-title">
+            ##    <span>$the_title</span>
+            ##</h2>
         </div>
-        ##<h2 class="page-title">
-        ##    <span>$the_title</span>
-        ##</h2>
+    </header>
+
+    <div id="topborder"></div>
+    <div id="topbordergray"></div>
+    #dockbar()
+
+    <div id="bgwrapper">
+        <div class="bg-bottom"></div>
+        <div class="bg-cols-left">
+            <div class="bg-col4"></div>
+            <div class="bg-col3"></div>
+            <div class="bg-col2"></div>
+            <div class="bg-col1"></div>
+        </div>
+        <div class="bg-cols-right">
+            <div class="bg-col1"></div>
+            <div class="bg-col2"></div>
+            <div class="bg-col3"></div>
+            <div class="bg-col4"></div>
+        </div>
     </div>
-</header>
 
-
-<div id="bgwrapper">
     <div class="container-fluid" id="wrapper">
         <div id="content">
             ##<nav id="breadcrumbs">#breadcrumbs()</nav>
@@ -61,19 +77,11 @@ $theme.include($body_top_include)
                 $theme.wrapPortlet("portlet.vm", $content_include)
             #end
         </div>
-
-        <footer id="footer" role="contentinfo">
-            <p class="powered-by">
-                #language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
-            </p>
-        </footer>
     </div>
-</div>
+     #parse ("$full_templates_path/footer.vm")
+    $theme.include($body_bottom_include)
 
-$theme.include($body_bottom_include)
-
-$theme.include($bottom_include)
-
+    $theme.include($bottom_include)
 </body>
 
 </html>

@@ -1,0 +1,328 @@
+{
+    "layoutTemplateId": "2_columns_ii",
+    "privatePages": [
+        {
+            "columns": [
+                [
+                    "CarouselContent.xml",
+                    "ThemeContent.xml"
+                ],
+                [
+                    {
+                        "portletId": "101",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false",
+                            "anyAssetType": "10007",
+                            "abstractLength": "400"
+                        }
+
+                    }
+                ],
+                [
+                    {
+                        "portletId": "3",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false"
+                        }
+                    },
+                    "PaypalContent.xml",
+                    {
+                        "portletId": "58",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false"
+                        }
+                    },
+                    "FacebookSidebar.xml",
+                    "LinksBar.xml"
+
+                ]
+            ],
+            "friendlyURL": "/home",
+            "layoutTemplateId": "1_2_columns_ii",
+            "name": "Home",
+            "title": "Home"
+
+        },
+        {
+            "columns": [
+                [
+                    "CarouselContent.xml",
+                    "ThemeContent.xml"
+                ],
+                [
+                    {
+                        "portletId": "101",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false",
+                            "anyAssetType": "10007",
+                            "abstractLength": "400"
+                        }
+
+                    }
+                ],
+                [
+                    {
+                        "portletId": "3",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false"
+                        }
+                    },
+                    "PaypalContent.xml",
+                    {
+                        "portletId": "58",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false"
+                        }
+                    },
+                    "FacebookSidebar.xml",
+                    "LinksBar.xml"
+                ]
+            ],
+            "friendlyURL": "/About",
+            "layoutTemplateId": "1_2_columns_ii",
+            "name": "About",
+            "title": "About",
+             "layouts": [
+                {
+                    "columns": [
+                        [
+                            "CarouselContent.xml",
+                            "ThemeContent.xml"
+                        ],
+                        [
+                            {
+                                "portletId": "101",
+                                "portletPreferences": {
+                                    "portletSetupShowBorders": "false",
+                                    "anyAssetType": "10007",
+                                    "abstractLength": "400"
+                                }
+
+                            }
+                        ],
+                        [
+                            {
+                                "portletId": "3",
+                                "portletPreferences": {
+                                    "portletSetupShowBorders": "false"
+                                }
+                            },
+                            "PaypalContent.xml",
+                    {
+                        "portletId": "58",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false"
+                        }
+                    },
+                            "FacebookSidebar.xml",
+                    "LinksBar.xml"
+                        ]
+                    ],
+                    "friendlyURL": "/child-page-1",
+                    "name": "Child Page 1",
+                    "title": "Child Page 1"
+                },
+                {
+                    "columns": [
+                        [
+                            "CarouselContent.xml",
+                            "ThemeContent.xml"
+                        ],
+                        [
+                            {
+                                "portletId": "101",
+                                "portletPreferences": {
+                                    "portletSetupShowBorders": "false",
+                                    "anyAssetType": "10007",
+                                    "abstractLength": "400"
+                                }
+
+                            }
+                        ],
+                        [
+                            {
+                                "portletId": "3",
+                                "portletPreferences": {
+                                    "portletSetupShowBorders": "false"
+                                }
+                            },
+                            "PaypalContent.xml"
+                        ]
+                    ],
+                    "friendlyURL": "/child-page-2",
+                    "name": "Child Page 2",
+                    "title": "Child Page 2"
+                }
+            ]
+        },
+        {
+            "columns": [
+                [
+                    {
+                        "portletId": "73",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false"
+                        }
+                    },
+                    "Typography.xml"
+                ],
+                [
+                            {
+                                "portletId": "3",
+                                "portletPreferences": {
+                                    "portletSetupShowBorders": "false"
+                                }
+                            },
+                            "PaypalContent.xml",
+                    {
+                        "portletId": "58",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false"
+                        }
+                    },
+                            "FacebookSidebar.xml",
+                    "LinksBar.xml"
+                        ]
+            ],
+            "friendlyURL": "/Typography",
+            "layoutTemplateId": "2_columns_iii",
+            "name": "Typography",
+            "title": "Typography"
+        },
+        {
+            "columns": [
+                [
+                    "Header.xml"
+                ],
+                [
+                    {
+                        "portletId": "73",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false"
+                        }
+                    },
+                    "BlockRegionExample.xml"
+                ],
+                [
+                    {
+                        "portletId": "3",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false"
+                        }
+                    },
+                    "PaypalContent.xml",
+                    {
+                        "portletId": "58",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false"
+                        }
+                    },
+                    "FacebookSidebar.xml",
+                    "LinksBar.xml"
+                ]
+            ],
+            "friendlyURL": "/BlockRegions",
+            "layoutTemplateId": "1_2_columns_ii",
+            "name": "Block Regions",
+            "title": "Block Regions"
+        },
+        {
+            "columns": [
+                [
+                    {
+                        "portletId": "73",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false"
+                        }
+                    },
+                    {
+                        "portletId": "33",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false",
+                            "enableFlags": "true",
+                            "enableRatings": "true",
+                            "socialBookmarksTypes": "addthis,linkedin,reddit",
+                            "enableRelatedAssets": "true",
+                            "socialBookmarksDisplayPosition": "bottom",
+                            "socialBookmarksDisplayStyle": "horizontal",
+                            "enableCommentRatings": "true",
+                            "enableSocialBookmarks": "true",
+                            "displayStyleGroupId": "10184",
+                            "pageDelta": "20",
+                            "displayStyle": "full-content",
+                            "enableComments": "true"                        
+                        }
+                    }
+                ]
+            ],
+            "friendlyURL": "/Blogs",
+            "layoutTemplateId": "1_2_columns_ii",
+            "name": "Blogs",
+            "title": "Blogs"
+        },
+        {
+            "columns": [
+                [
+                    {
+                        "portletId": "73",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false"
+                        }
+                    },
+                    {
+                        "portletId": "1_WAR_webformportlet_INSTANCE_${groupId}",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false",
+                            "sendAsEmail": "false",
+                            "fieldLabel4": "Message",
+                            "fieldType5": "options",    
+                            "fieldOptional1": "false",  
+                            "fieldOptional5": "true",   
+                            "fieldLabel5": "Satisfactometer",   
+                            "description": "Your input is valuable to us. Please send us your suggestions.",    
+                            "requireCaptcha": "false",
+                            "fieldOptional2": "false",  
+                            "fieldOptions5": "Mind=Blown,Good,OK,Bad,Sobbing Uncontrollably",   
+                            "subject": "Suggestions",   
+                            "saveToFile": "false",  
+                            "fieldType2": "text",   
+                            "fieldType3": "textarea",   
+                            "fieldType4": "textarea",   
+                            "fieldOptions2": "Excellent,Good,Satisfactory,Poor",    
+                            "fieldType1": "text",   
+                            "saveToDatabase": "true",   
+                            "title": "Contact Us",  
+                            "fieldLabel1": "Name",  
+                            "fieldOptional4": "true",   
+                            "fieldLabel2": "Your E-mail Address",   
+                            "fieldOptional3": "true",   
+                            "fieldLabel3": "Subject"
+                        }
+
+                    }
+                ],
+                [
+                    {
+                        "portletId": "3",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false"
+                        }
+                    },
+                    "PaypalContent.xml",
+                    {
+                        "portletId": "58",
+                        "portletPreferences": {
+                            "portletSetupShowBorders": "false"
+                        }
+                    },
+                    "FacebookSidebar.xml",
+                    "LinksBar.xml"
+                ]
+            ],
+            "friendlyURL": "/Contact",
+            "layoutTemplateId": "2_columns_iii",
+            "name": "Contact",
+            "title": "Contact"
+        }
+    ]
+}
