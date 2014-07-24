@@ -1014,6 +1014,11 @@ body {
         height: 163px;
     }
 
+    .journal-content-article:hover {
+        overflow-y: scroll;
+        overflow-x: visible;
+    }
+
     .footer-bar {
         @include border-bottom-left-radius (50px);
         @include border-bottom-right-radius (50px);
@@ -1627,36 +1632,36 @@ body {
             background-color: rgba(245, 245, 245, 0.1);
             height: 70%;
         }
+
         .note {
             width: calc(97%);
             font-weight: bold;
             color: #fff;
             border: 0;
         }
+
+        .footer-article-1, .footer-article-2, .footer-article-3, .footer-article-4 {
+            height: 122px;
+            color: #fff;
+        }
+
+        .footer-article-1 {
+            border-right: 0px;
+        }
+
+        .footer-article-2, .footer-article-3 {
+            border: 0px;
+        }
+
+        .footer-article-4 {
+            border-left: 0px;
+        }
+        .journal-content-article {
+            overflow: hidden;
+            height: 118px;
+        }
         height: 200px;
         background-color: rgba(101, 101, 101, 0.8);
-    }
-
-    .footer-article-1, .footer-article-2, .footer-article-3, .footer-article-4 {
-        height: 122px;
-        color: #fff;
-    }
-
-    .footer-article-1 {
-        border-right: 0px;
-    }
-
-    .footer-article-2, .footer-article-3 {
-        border: 0px;
-    }
-
-    .footer-article-4 {
-        border-left: 0px;
-    }
-
-    #footer .journal-content-article {
-        overflow: hidden;
-        height: 118px;
     }
 }
 
@@ -1791,35 +1796,36 @@ body {
             }
         }
 
-        .footer-article-1, .footer-article-2, .footer-article-3, .footer-article-4 {
-            width: calc(48.5% - 26px);
-            height: 118px;
-            margin: 0;
-            border: 0px;
-            color: #fff;
-        }
-
-        .footer-article-1 {
-            border-right: 0px;
-            @include border-radius (0px);
-        }
-
-        .footer-article-2 {
-            float: right;
-
-        }
-
-        .footer-article-4 {
-            border-left: 0px;
-            float: right;
-            @include border-radius (0px);
-        }
 
         #footer {
             height: 325px;
 
             .footer-bar {
                 height: 270px;
+                @include border-radius (0px);
+            }
+
+            .footer-article-1, .footer-article-2, .footer-article-3, .footer-article-4 {
+                width: calc(48.5% - 26px);
+                height: 118px;
+                margin: 0;
+                border: 0px;
+                color: #fff;
+            }
+
+            .footer-article-1 {
+                border-right: 0px;
+                @include border-radius (0px);
+            }
+
+            .footer-article-2 {
+                float: right;
+
+            }
+
+            .footer-article-4 {
+                border-left: 0px;
+                float: right;
                 @include border-radius (0px);
             }
         }
