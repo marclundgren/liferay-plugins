@@ -178,7 +178,6 @@
 }
 
 #navwrapper {
-    background: #fff;
     margin-left: auto;
     margin-right: auto;
     margin-top: -10px;
@@ -978,6 +977,8 @@ body {
     top: -100px;
     width: calc(70% - 510px);
     z-index: -200;
+    max-height: 5000px;
+    min-height: 3000px;
 }
 
 .bg-bottom {
@@ -985,14 +986,15 @@ body {
     -ms-animation: general-fade-in 1s ease-in-out;
     -o-animation: general-fade-in 1s ease-in-out;
     -webkit-animation: general-fade-in 1s ease-in-out;
+    @include box-shadow (0px -80px 0px 0px #f0f0f0);
     animation: general-fade-in 1s ease-in-out;
-
-    width: 100%;
-    height: 40%;
+    background: #d2d2d2;
+    border-top: 140px solid #E2E2E2;
     bottom: 0;
+    height: 40%;
     left: 0;
     position: absolute;
-    background: #d2d2d2;
+    width: 100%;
     z-index: -300;
 }
 
@@ -1919,7 +1921,7 @@ body {
         border: none;
     }
 
-    .field[type="text"], #signinmodal .field[type="password"] {
+    .field[type="text"], .field[type="password"] {
         @include border-radius (20px);
         padding-left: 15px;
         padding-right: 15px;
@@ -2246,7 +2248,7 @@ body {
 
 @-moz-keyframes height-expand {
     0% {
-        height: 20%;
+        height: 40%;
         opacity: .5;
     }
     100% {
@@ -2281,7 +2283,7 @@ body {
 
 @keyframes height-expand {
     0% {
-        height: 20%;
+        height: 40%;
         opacity: .5;
     }
     100% {

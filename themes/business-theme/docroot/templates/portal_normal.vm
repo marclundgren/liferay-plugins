@@ -50,10 +50,10 @@
     <div id="bgwrapper">
         <div class="bg-bottom"></div>
         <div class="bg-cols-left">
-            <div class="bg-col4"></div>
-            <div class="bg-col3"></div>
-            <div class="bg-col2"></div>
             <div class="bg-col1"></div>
+            <div class="bg-col2"></div>
+            <div class="bg-col3"></div>
+            <div class="bg-col4"></div>
         </div>
         <div class="bg-cols-right">
             <div class="bg-col1"></div>
