@@ -37,9 +37,33 @@
 										#set ($nav_child_css_class="selected")
 									#end
 
-									<li class="$nav_child_css_class" id="layout_$nav_child.getLayoutId()" $nav_child_attr_selected role="presentation">
-										<a aria-labelledby="layout_$nav_child.getLayoutId()" href="$nav_child.getURL()" $nav_child.getTarget() role="menuitem">$nav_child.getName()</a>
-									</li>
+									#if ($nav_child.hasChildren())
+										<li class="$nav_child_css_class" id="layout_$nav_child.getLayoutId()" $nav_child_attr_selected role="presentation">
+											<a aria-labelledby="layout_$nav_child.getLayoutId()" $nav_item_attr_has_popup class="$nav_item_link_css_class third-level-head" href="$nav_child.getURL()" $nav_child.getTarget() role="menuitem">
+												<span>$nav_item.icon() $nav_child.getName() $nav_item_caret</span>
+											</a>
+
+											<ul class="dropdown-menu child-menu third-menu" role="menu">
+												#foreach ($nav_subchild in $nav_child.getChildren())
+													#set ($nav_subchild_attr_selected="")
+													#set ($nav_subchild_css_class="lfr-nav-item")
+
+													#if ($nav_subchild.isSelected())
+														#set ($nav_subchild_attr_selected="aria-selected='true'")
+														#set ($nav_subchild_css_class="selected")
+													#end
+
+													<li class="$nav_subchild_css_class third-level-item" id="layout_$nav_subchild.getLayoutId()" $nav_subchild_attr_selected role="presentation">
+														<a aria-labelledby="layout_$nav_subchild.getLayoutId()" href="$nav_subchild.getURL()" $nav_subchild.getTarget() role="menuitem">$nav_subchild.getName()</a>
+													</li>
+												#end
+											</ul>
+										</li>
+									#else
+										<li class="$nav_child_css_class" id="layout_$nav_child.getLayoutId()" $nav_child_attr_selected role="presentation">
+											<a aria-labelledby="layout_$nav_child.getLayoutId()" href="$nav_child.getURL()" $nav_child.getTarget() role="menuitem">$nav_child.getName()</a>
+										</li>
+									#end
 								#end
 							</ul>
 						#end
